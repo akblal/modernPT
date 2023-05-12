@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <div className= 'container'>
       <div className= 'container-header'>
-        <h1>Performax Physical Therapy</h1>
+        <h1 className= 'title'>Performax Physical Therapy</h1>
       </div>
       <div className= 'information-container'>
         <div className= 'half-container'>
