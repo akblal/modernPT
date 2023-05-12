@@ -1,0 +1,68 @@
+.container {
+  color:green;
+  padding: 20px;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  height: 75vh;
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-header {
+  display: flex;
+  justify-content: center;
+}
+
+.information-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  height: 100%;
+}
+
+.half-container {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  border-color: red;
+  border-style: solid;
+  height: 100%;
+}
+
+.general-info-container {
+  flex-grow: 3;
+  border-width: 1px;
+  border-color: brown;
+  border-style: solid;
+}
+
+.schedule-history-container {
+  flex-grow: 4;
+  border-width: 1px;
+  border-color: yellow;
+  border-style: solid;
+}
+
+.provider-info-container {
+  flex-grow: 4;
+  border-width: 1px;
+  border-color: brown;
+  border-style: solid;
+}
+
+.hep-container {
+  flex-grow: 3;
+  border-width: 1px;
+  border-color: yellow;
+  border-style: solid;
+}
+
+.help-container {
+  flex-grow: 3;
+  border-width: 1px;
+  border-color: brown;
+  border-style: solid;
+}
+
