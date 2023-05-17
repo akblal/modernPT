@@ -1,5 +1,8 @@
 const express = require('express');
 require('dotenv').config();
+const controller = require('./controller.js')
+const axios = require('axios')
+
 
 const path = require("path");
 const app = express();
@@ -9,7 +12,7 @@ const app = express();
 app.use(express.static('client/dist'));
 app.use(express.json());
 
-
+app.get(`/user/:address`, controller.user)
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
@@ -18,7 +21,6 @@ app.get('/*', function(req, res) {
     }
   })
 })
-
 
 app.listen(Number(process.env.PORT),()=>{
   console.log(`listening on port ${process.env.PORT}`);

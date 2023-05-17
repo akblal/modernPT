@@ -6,7 +6,8 @@ CREATE TABLE patient (
   name TEXT NOT NULL,
   birthdate TEXT NOT NULL,
   referringPhysician TEXT NOT NULL,
-  diagnosis TEXT NOT NULL
+  diagnosis TEXT NOT NULL,
+  email TEXT NOT NULL
 );
 
 CREATE TABLE provider (
@@ -14,7 +15,7 @@ CREATE TABLE provider (
   name TEXT NOT NULL
 );
 
-INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis) VALUES (0, 'Brandon Hsu', '8/22/1991', 'Dr. Bob', 'Left hip pain');
-INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis) VALUES (1, 'Joanie Hsu', '3/22/1991', 'Dr. Joe', 'Left elbow pain');
-INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis) VALUES (2, 'Andrew Hsu', '8/22/1991', 'Dr. Smith', 'low back pain');
-INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis) VALUES (3, 'Darren Hsu', '8/22/1991', 'Dr. Greg', 'right shoulder pain');
+INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis, email) VALUES (0, 'Brandon Hsu', '8/22/1991', 'Dr. Bob', 'Left hip pain', 'brandon@gmail.com');
+INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis, email) VALUES (1, 'Joanie Hsu', '3/22/1991', 'Dr. Joe', 'Left elbow pain', 'joanie@gmail.com');
+INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis, email) VALUES (2, 'Andrew Hsu', '5/27/1991', 'Dr. Smith', 'low back pain', 'andrew@gmail.com');
+INSERT INTO patient (id, name, birthdate, referringPhysician, diagnosis, email) VALUES (3, 'Darren Hsu', '3/26/1991', 'Dr. Greg', 'right shoulder pain', 'darren@gmail.com');

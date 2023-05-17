@@ -19,7 +19,3 @@ const ProviderInfo = () => {
 }
 
 export default ProviderInfo
-
-{/* <div className= 'provider-button-container'>
-
-</div> */}
