@@ -8,7 +8,7 @@ import Help from './Help.jsx'
 const HomePage = () => {
 
   return (
-    <div className= 'container'>
+    <div className= 'homescreen-container'>
       <div className= 'container-header'>
         <h1 className= 'title'>Performax Physical Therapy</h1>
       </div>

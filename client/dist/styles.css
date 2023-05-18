@@ -1,54 +1,204 @@
-.container {
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-right: 50px;
+  font-family: 'Source Sans Pro', sans-serif;;
+}
+
+.clinic-logo {
+  width: 125px;
+  height: 125px;
+  background-color: #f7b33f;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.clinic-logo-word {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 100%;
+  width: 100%;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.homescreen-container {
   color:green;
   padding: 20px;
   border-width: 1px;
   border-color: black;
   border-style: solid;
   height: fit-content;
-  /* margin: 100px; */
   display: flex;
   flex-direction: column;
 }
 
-.login-container {
-  color:green;
-  padding: 50px;
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
-  height: fit-content;
+.login-page-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-width: 1500px;
+  min-height: 900px;
+}
+
+.login-image-container {
+  display: flex;
+  flex-grow: 5;
   justify-content: center;
   align-items: center;
-  height: 88vh;
+  margin-left: 100px;
+}
+
+.login-image {
+  height: 750px;
+}
+
+.login-input-container {
+  flex-grow: 2;
+  padding: 10px;
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-left: 150px;
 }
 
 .center-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: solid green 2px;
-  padding: 80px;
-  max-width: 400px;
+  /* border: solid green 2px; */
+  margin-top: 30px;
+  padding: 10px;
+  width: 100%;
+}
+
+.login-title-container {
+  margin-bottom: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-title {
+  display: flex;
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.login-subtitle{
+  display: flex;
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .login-input-field-container {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
   flex-direction: column;
+  width: 100%;
 }
 
-.login-button-container{
+.login-input-title {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.login-input-field {
+  height: 50px;
+  width: 95%;
+  font-size: 30px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.forgot-password-container {
+  margin-bottom: 20px;
+}
+
+.forgot-password {
+  font-size: 25px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login-checkbox-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.login-links-container {
+.login-checkbox {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  accent-color: #f7b33f;
+}
+
+.remember-me-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.remember-me {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.login-button-container{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-button {
+  height: 70px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.login-link-container {
+  display: flex;
+  flex: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.login-need-an-account {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.sign-up-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.social-media-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.social-media-container {
+  border: 1px blue solid;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
 }
 
 .container-header {

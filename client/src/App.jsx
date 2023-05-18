@@ -14,7 +14,6 @@ import SignUp from './modernPT/login/SignUp.js'
 function App() {
   const [email, setEmail] = useState('');
 
-
   const getEmail = (address) => {
     setEmail(address);
     console.log (address)
@@ -28,7 +27,14 @@ function App() {
     console.log('bye')
   }
   return (
-    <div>
+    <div className= 'app-container'>
+      <div className= 'clinic-logo-container'>
+        <div className= 'clinic-logo'>
+          <div className= 'clinic-logo-word'>
+            PT
+          </div>
+        </div>
+      </div>
       <SignIn getEmail= {getEmail}/>
     </div>
   );
