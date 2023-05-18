@@ -34,6 +34,8 @@ const SignIn = ({ getEmail }) => {
             <div className= 'login-title'>Welcome to Performax Therapy</div>
             <div className= 'login-subtitle'>Let's help you achieve your physical goals!</div>
 
+
+
           </div>
           <div className= 'login-input-field-container'>
             <div>
