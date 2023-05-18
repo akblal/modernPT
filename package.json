@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/akblal/modernPT#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
     "create-react-app": "^5.0.1",

@@ -111,11 +111,28 @@
   margin-bottom: 10px;
 }
 
+.login-input-wrapper {
+  position: relative;
+}
+
+.login-input-icon {
+  height: 40px;
+  width: 40px;
+  padding: 4px;
+  position: absolute;
+  box-sizing:border-box;
+  top: 36px;
+  left: 10px;
+  transform: translateY(-50%);
+
+}
+
 .login-input-field {
   height: 50px;
-  width: 95%;
+  width: 88%;
   font-size: 30px;
   padding: 10px;
+  padding-left: 70px;
   margin-bottom: 20px;
 }
 
@@ -158,15 +175,13 @@
 .login-button-container{
   margin-top: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
 }
 
 .login-button {
   height: 70px;
-  width: 100%;
+  width: 98%;
   border-radius: 5px;
+
 }
 
 .login-link-container {
@@ -182,10 +197,11 @@
 }
 
 .sign-up-link {
-  color: blue;
+  color: #4c5fee;
   text-decoration: underline;
   cursor: pointer;
   margin-left: 10px;
+  font-weight: 550;
 }
 
 .social-media-row-container {
@@ -199,6 +215,7 @@
   height: 80px;
   width: 80px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .container-header {

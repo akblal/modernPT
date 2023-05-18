@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
+
 import LogInImage from '../../images/login/loginscreen.jpg'
 
 const SignIn = ({ getEmail }) => {
@@ -37,12 +42,18 @@ const SignIn = ({ getEmail }) => {
           <div className= 'login-input-field-container'>
             <div>
               <div className= 'login-input-title'>Email</div>
-              <input type= 'text' value = {email} onChange= {(e) => setEmail(e.target.value)} className= 'login-input-field'/>
+              <div className= 'login-input-wrapper'>
+                <FontAwesomeIcon className= 'login-input-icon' icon= {faEnvelope} />
+                <input type= 'text' value = {email} onChange= {(e) => setEmail(e.target.value)} className= 'login-input-field'/>
+              </div>
             </div>
 
             <div>
               <div className= 'login-input-title'>Password</div>
-              <input type= 'text' value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'login-input-field'/>
+              <div className= 'login-input-wrapper'>
+              <FontAwesomeIcon className= 'login-input-icon' icon= {faKey} />
+                <input type= 'text' value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'login-input-field'/>
+              </div>
             </div>
 
             <div className= 'forgot-password-container'>
