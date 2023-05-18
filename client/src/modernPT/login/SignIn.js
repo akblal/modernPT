@@ -79,15 +79,21 @@ const SignIn = ({ getEmail }) => {
           </div>
 
           <div className= 'social-media-row-container'>
-            <div className= 'social-media-container'>
-
+            <div className= 'social-media-text-container'>
+              <div className= 'social-media-text'></div>
             </div>
-            <div className= 'social-media-container'>
+            <div className= 'social-media-buttons-container'>
+              <div className= 'social-media-container'>
 
-            </div>
-            <div className= 'social-media-container'>
+              </div>
+              <div className= 'social-media-container'>
 
+              </div>
+              <div className= 'social-media-container'>
+
+              </div>
             </div>
+
           </div>
         </form>
       </div>
