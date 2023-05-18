@@ -154,10 +154,12 @@
 }
 
 .login-checkbox {
+  accent-color: #f7b33f;;
   width: 30px;
   height: 30px;
   border-radius: 5px;
-  accent-color: #f7b33f;
+  cursor: pointer;
+
 }
 
 .remember-me-container {
@@ -181,7 +183,7 @@
   height: 70px;
   width: 98%;
   border-radius: 5px;
-
+  cursor: pointer;
 }
 
 .login-link-container {

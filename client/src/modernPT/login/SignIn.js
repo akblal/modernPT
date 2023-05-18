@@ -52,7 +52,7 @@ const SignIn = ({ getEmail }) => {
               <div className= 'login-input-title'>Password</div>
               <div className= 'login-input-wrapper'>
               <FontAwesomeIcon className= 'login-input-icon' icon= {faKey} />
-                <input type= 'text' value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'login-input-field'/>
+                <input type= 'password' value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'login-input-field'/>
               </div>
             </div>
 
