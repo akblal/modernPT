@@ -157,9 +157,8 @@
   accent-color: #f7b33f;;
   width: 30px;
   height: 30px;
-  border-radius: 5px;
   cursor: pointer;
-
+  color: white;
 }
 
 .remember-me-container {
@@ -179,11 +178,19 @@
   display: flex;
 }
 
+.login-button-font {
+  font-size: 25px;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
 .login-button {
   height: 70px;
   width: 98%;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #f7b33f;
+  border: solid #f9ad2a 10px;
 }
 
 .login-link-container {

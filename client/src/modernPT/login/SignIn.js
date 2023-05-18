@@ -70,7 +70,7 @@ const SignIn = ({ getEmail }) => {
 
           </div>
           <div className= 'login-button-container'>
-            <button disabled= {loading} className= 'login-button login-input-title'>Log In</button>
+            <button disabled= {loading} className= 'login-button login-button-font'>Log In</button>
           </div>
 
           <div className= 'login-link-container'>
