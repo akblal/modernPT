@@ -213,6 +213,7 @@
 .login-button-container{
   margin-top: 20px;
   display: flex;
+  margin-bottom: 10px;
 }
 
 .login-button-font {
@@ -239,7 +240,7 @@
   display: flex;
   flex: row;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .login-need-an-account {

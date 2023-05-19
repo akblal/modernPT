@@ -21,13 +21,25 @@ const SignIn = ({ getEmail }) => {
 
   const signIn = (e) => {
     e.preventDefault();
+
+    if (email.length === 0 || email.indexOf('@') < 0) {
+      return setError('Please enter a valid email')
+    }
+
+    if (password.length === 0) {
+      return setError('Please enter your password')
+    }
+
     signInWithEmailAndPassword (auth, email, password)
     .then ((userCredential) => {
       console.log(userCredential.user.email, 'email')
       const email = userCredential.user.email;
       getEmail(email)
     })
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(err)
+      setError('Account not found. Please try again or sign up.')
+    })
   }
 
 
@@ -41,6 +53,10 @@ const SignIn = ({ getEmail }) => {
           <div className= 'login-title-container'>
             <div className= 'login-title'>Welcome to Performax Therapy</div>
             <div className= 'login-subtitle'>Let's help you achieve your physical goals!</div>
+            {error ?
+            <div className= 'sign-up-error-message'> {error} </div> :
+            <div className= 'sign-up-error-message sign-up-hidden-error'>no error</div>
+          }
           </div>
           <div className= 'login-input-field-container'>
             <div>

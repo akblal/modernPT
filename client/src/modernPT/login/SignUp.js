@@ -63,7 +63,7 @@ const SignUp = ({ getEmail }) => {
 
           {error ?
             <div className= 'sign-up-error-message'> {error} </div> :
-            <div hidden= 'hidden' className= 'sign-up-error-message sign-up-hidden-error'>no error</div>
+            <div className= 'sign-up-error-message sign-up-hidden-error'>no error</div>
           }
 
           <div className= 'login-input-field-container'>
@@ -145,10 +145,7 @@ const SignUp = ({ getEmail }) => {
         </form>
       </div>
     </div>
-
   )
 }
 
 export default SignUp
-
-
