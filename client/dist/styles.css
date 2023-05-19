@@ -109,6 +109,7 @@
   font-size: 25px;
   font-weight: 600;
   margin-bottom: 10px;
+  /* border: 1px green solid; */
 }
 
 .login-input-wrapper {
@@ -271,6 +272,32 @@ input[type=text]:focus {
   width: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.sign-up-password-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  width: 98%;
+}
+
+.sign-up-password-container {
+  width: 100%;
+}
+
+.confirm-password-container {
+  display: grid;
+  justify-items: start;
+}
+
+.sign-up-password-field {
+  height: 50px;
+  width: 79%;
+  font-size: 30px;
+  padding: 10px;
+  padding-left: 70px;
+  margin-bottom: 20px;
+  border: 3px solid grey;
 }
 
 .container-header {

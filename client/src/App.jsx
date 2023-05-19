@@ -24,7 +24,6 @@ function App() {
     .catch((err) => {
       console.log(err, 'in get user in App')
     })
-    console.log('bye')
   }
   return (
     <div className= 'app-container'>
@@ -35,12 +34,11 @@ function App() {
           </div>
         </div>
       </div>
-      <SignIn getEmail= {getEmail}/>
+      <SignUp getEmail= {getEmail}/>
+      {/* <SignIn getEmail= {getEmail}/> */}
     </div>
   );
 }
 
 root.render(<App />)
 
-
-// <SignUp getEmail= {getEmail}/>
