@@ -154,6 +154,7 @@ input[type=text]:focus {
   border: 3px solid grey;
 }
 
+.sign-up-password-field:focus,
 .login-input-field:focus {
   border: 3px solid #f7b33f;
   outline: none;

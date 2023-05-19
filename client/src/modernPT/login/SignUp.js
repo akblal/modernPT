@@ -4,12 +4,13 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 
 import LogInImage from '../../images/login/loginscreen.jpg'
 
 const SignUp = ({ getEmail }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -53,6 +54,14 @@ const SignUp = ({ getEmail }) => {
             <div className= 'login-title'>Sign Up</div>
           </div>
           <div className= 'login-input-field-container'>
+          <div>
+              <div className= 'login-input-title'>Name</div>
+              <div className= 'login-input-wrapper'>
+                <FontAwesomeIcon className= 'login-input-icon' icon= {faUser} />
+                <input type= 'text' value = {name} onChange= {(e) => setName(e.target.value)} className= 'login-input-field'/>
+              </div>
+            </div>
+
             <div>
               <div className= 'login-input-title'>Email</div>
               <div className= 'login-input-wrapper'>
