@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
+import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
+import { HiOutlineLockClosed, HiOutlineUser } from "react-icons/hi";
 
 import LogInImage from '../../images/login/loginscreen.jpg'
+import usePasswordToggle from '../hooks/usePasswordToggle.js'
+
 
 const SignIn = ({ getEmail }) => {
   const [email, setEmail] = useState('');
@@ -14,6 +15,8 @@ const SignIn = ({ getEmail }) => {
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [PasswordType, ToggleIcon] = usePasswordToggle();
 
 
   const signIn = (e) => {
@@ -43,7 +46,7 @@ const SignIn = ({ getEmail }) => {
             <div>
               <div className= 'login-input-title'>Email</div>
               <div className= 'login-input-wrapper'>
-                <FontAwesomeIcon className= 'login-input-icon' icon= {faEnvelope} />
+                <BsEnvelope className= 'login-input-icon' />
                 <input type= 'text' value = {email} onChange= {(e) => setEmail(e.target.value)} className= 'login-input-field'/>
               </div>
             </div>
@@ -51,8 +54,9 @@ const SignIn = ({ getEmail }) => {
             <div>
               <div className= 'login-input-title'>Password</div>
               <div className= 'login-input-wrapper'>
-              <FontAwesomeIcon className= 'login-input-icon' icon= {faKey} />
-                <input type= 'password' value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'login-input-field'/>
+                <HiOutlineLockClosed className= 'login-input-icon' />
+                <input type= {PasswordType} value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'login-input-field'/>
+                <span className= 'login-password-eye-icon'>{ToggleIcon}</span>
               </div>
             </div>
 

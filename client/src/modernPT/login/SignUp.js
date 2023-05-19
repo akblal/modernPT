@@ -17,7 +17,6 @@ const SignUp = ({ getEmail }) => {
   const [typingPassword, setTypingPassword] = useState(false);
   const [typingConfirmPassword, setTypingConfirmPassword] = useState(false);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const [PasswordType, ToggleIcon] = usePasswordToggle();
 
@@ -74,7 +73,7 @@ const SignUp = ({ getEmail }) => {
                   <div className= 'login-input-title'>Name</div>
                   <div className= 'login-input-wrapper'>
                     <HiOutlineUser className= 'login-input-icon' />
-                    <input type= 'text' value = {name} onChange= {(e) => setName(e.target.value)} className= 'login-input-field'/>
+                    <input type= 'text' value = {name} onChange= {(e) => setName(e.target.value)} className= 'sign-up-input-field'/>
                   </div>
                 </div>
 
@@ -83,7 +82,7 @@ const SignUp = ({ getEmail }) => {
                   <div className= 'login-input-wrapper'>
                     <BsEnvelope className= 'login-input-icon'/>
 
-                    <input type= 'text' value = {email} onChange= {(e) => setEmail(e.target.value)} className= 'login-input-field'/>
+                    <input type= 'text' value = {email} onChange= {(e) => setEmail(e.target.value)} className= 'sign-up-input-field'/>
                   </div>
                 </div>
               </div>
@@ -109,13 +108,8 @@ const SignUp = ({ getEmail }) => {
                         }
                       }
                       className= 'sign-up-password-field'/>
-                    <span>{ToggleIcon}</span>
+                    <span className= 'password-visible'>{ToggleIcon}</span>
                   </div>
-                  {/* {typingPassword && password.length >= 6 ?
-                    <div className= 'sign-up-password-warning'>good password</div> :
-                    <div>need longer password</div>
-                  } */}
-
                 </div>
               </div>
 
@@ -132,20 +126,15 @@ const SignUp = ({ getEmail }) => {
                         setTypingConfirmPassword(true)
                         }}
                       className= 'sign-up-password-field'/>
-                    <span>{ToggleIcon}</span>
+                    <span className= 'password-visible'>{ToggleIcon}</span>
                   </div>
-                  {/* {typingConfirmPassword && confirmPassword === password ?
-                    <div className= 'sign-up-password-warning'>password matches!</div> :
-                    <div>passwords to not match</div>
-                  } */}
                 </div>
               </div>
             </div>
-
           </div>
 
           <div className= 'login-button-container'>
-            <button disabled= {loading} className= 'login-button login-button-font'>Create Account</button>
+            <button className= 'login-button login-button-font'>Create Account</button>
           </div>
 
           <div className= 'login-link-container'>

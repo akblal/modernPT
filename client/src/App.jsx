@@ -34,8 +34,8 @@ function App() {
           </div>
         </div>
       </div>
-      <SignUp getEmail= {getEmail}/>
-      {/* <SignIn getEmail= {getEmail}/> */}
+      {/* <SignUp getEmail= {getEmail}/> */}
+      <SignIn getEmail= {getEmail}/>
     </div>
   );
 }

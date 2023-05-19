@@ -6,8 +6,8 @@ const usePasswordToggle = () => {
 
   const Icon = (
     visible ?
-      <BsEye className= 'password-visible' onClick= {() => setVisible(!visible)}/> :
-      <BsEyeSlash className= 'password-visible' onClick= {() => setVisible(!visible)}/>
+      <BsEye className= 'eye-size' onClick= {() => setVisible(!visible)}/> :
+      <BsEyeSlash className= 'eye-size' onClick= {() => setVisible(!visible)}/>
   )
 
   const InputType = visible ? 'text' : 'password'
