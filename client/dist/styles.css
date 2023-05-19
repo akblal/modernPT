@@ -245,8 +245,6 @@ input[type=text]:focus {
 .social-media-row-container {
   display: grid;
   grid-template-columns: 5fr 3fr;
-  /* flex-direction: row;
-  justify-content: space-evenly; */
 }
 
 .social-media-text-container {
@@ -275,20 +273,57 @@ input[type=text]:focus {
   cursor: pointer;
 }
 
+.sign-up-title-container {
+  display: flex;
+  font-size: 60px;
+  font-weight: 900;
+  /* margin-bottom: 10px; */
+}
+
+.sign-up-top-input-container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
+.sign-up-non-password-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sign-up-user-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up-user-image {
+  border: 10px solid #f7b33f;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+  background-color: #f7b33f;
+  background-clip:content-box;
+  padding :10px;
+}
+
 .sign-up-password-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 40px;
-  width: 98%;
+  width: 100%;
 }
 
 .sign-up-password-container {
   width: 100%;
-}
-
-.confirm-password-container {
   display: grid;
   justify-items: start;
+}
+
+
+.sign-up-full-width {
+  width: 100%;
 }
 
 .sign-up-password-field {

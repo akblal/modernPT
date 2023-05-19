@@ -54,36 +54,49 @@ const SignUp = ({ getEmail }) => {
             <div className= 'login-title'>Sign Up</div>
           </div>
           <div className= 'login-input-field-container'>
-          <div>
-              <div className= 'login-input-title'>Name</div>
-              <div className= 'login-input-wrapper'>
-                <FontAwesomeIcon className= 'login-input-icon' icon= {faUser} />
-                <input type= 'text' value = {name} onChange= {(e) => setName(e.target.value)} className= 'login-input-field'/>
-              </div>
-            </div>
 
-            <div>
-              <div className= 'login-input-title'>Email</div>
-              <div className= 'login-input-wrapper'>
-                <FontAwesomeIcon className= 'login-input-icon' icon= {faEnvelope} />
-                <input type= 'text' value = {email} onChange= {(e) => setEmail(e.target.value)} className= 'login-input-field'/>
-              </div>
-            </div>
 
-            <div className= 'sign-up-password-wrapper'>
-              <div className= 'sign-up-password-container'>
-                <div className= 'login-input-title'>Password</div>
-                <div className= 'login-input-wrapper'>
-                <FontAwesomeIcon className= 'login-input-icon' icon= {faKey} />
-                  <input type= 'password' value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'sign-up-password-field'/>
+            <div className= 'sign-up-top-input-container'>
+              <div className= 'sign-up-nonpassword-container'>
+                <div>
+                  <div className= 'login-input-title'>Name</div>
+                  <div className= 'login-input-wrapper'>
+                    <FontAwesomeIcon className= 'login-input-icon' icon= {faUser} />
+                    <input type= 'text' value = {name} onChange= {(e) => setName(e.target.value)} className= 'login-input-field'/>
+                  </div>
+                </div>
+
+                <div>
+                  <div className= 'login-input-title'>Email</div>
+                  <div className= 'login-input-wrapper'>
+                    <FontAwesomeIcon className= 'login-input-icon' icon= {faEnvelope} />
+                    <input type= 'text' value = {email} onChange= {(e) => setEmail(e.target.value)} className= 'login-input-field'/>
+                  </div>
                 </div>
               </div>
 
-              <div className= 'sign-up-password-container confirm-password-container'>
-                <div className= 'login-input-title'>Confirm Password</div>
-                <div className= 'login-input-wrapper'>
-                <FontAwesomeIcon className= 'login-input-icon' icon= {faKey} />
-                  <input type= 'password' value= {confirmPassword} onChange= {(e) => setConfirmPassword(e.target.value)} className= 'sign-up-password-field'/>
+              <div className= 'sign-up-user-image-container'>
+                <div className= 'sign-up-user-image'></div>
+              </div>
+            </div>
+            <div className= 'sign-up-password-wrapper'>
+              <div className= 'sign-up-password-container'>
+                <div className= 'sign-up-full-width'>
+                  <div className= 'login-input-title'>Password</div>
+                  <div className= 'login-input-wrapper'>
+                  <FontAwesomeIcon className= 'login-input-icon' icon= {faKey} />
+                    <input type= 'password' value= {password} onChange= {(e) => setPassword(e.target.value)} className= 'sign-up-password-field'/>
+                  </div>
+                </div>
+              </div>
+
+              <div className= 'sign-up-password-container'>
+                <div className= 'sign-up-full-width'>
+                  <div className= 'login-input-title'>Confirm Password</div>
+                  <div className= 'login-input-wrapper'>
+                  <FontAwesomeIcon className= 'login-input-icon' icon= {faKey} />
+                    <input type= 'password' value= {confirmPassword} onChange= {(e) => setConfirmPassword(e.target.value)} className= 'sign-up-password-field'/>
+                  </div>
                 </div>
               </div>
             </div>
