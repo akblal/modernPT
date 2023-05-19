@@ -306,6 +306,13 @@ input[type=text]:focus {
   background-color: #f7b33f;
   background-clip:content-box;
   padding :10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up-portrait-icon {
+  font-size: 80px;
 }
 
 .sign-up-password-wrapper {

@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faImagePortrait } from '@fortawesome/free-solid-svg-icons';
 
 import LogInImage from '../../images/login/loginscreen.jpg'
 
@@ -76,7 +76,9 @@ const SignUp = ({ getEmail }) => {
               </div>
 
               <div className= 'sign-up-user-image-container'>
-                <div className= 'sign-up-user-image'></div>
+                <div className= 'sign-up-user-image'>
+                  <FontAwesomeIcon className= 'sign-up-portrait-icon' icon= {faImagePortrait} />
+                </div>
               </div>
             </div>
             <div className= 'sign-up-password-wrapper'>
