@@ -18,7 +18,6 @@ const SignIn = ({ getEmail }) => {
 
   const [PasswordType, ToggleIcon] = usePasswordToggle();
 
-
   const signIn = (e) => {
     e.preventDefault();
 
@@ -41,7 +40,6 @@ const SignIn = ({ getEmail }) => {
       setError('Account not found. Please try again or sign up.')
     })
   }
-
 
   return (
     <div className= 'login-page-container'>

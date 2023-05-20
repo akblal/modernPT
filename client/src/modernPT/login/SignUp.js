@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { auth } from '../../firebase.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { storage } from '../../firebase.js'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import { BsEnvelope, BsEye, BsEyeSlash } from "react-icons/bs";
 import { HiOutlineLockClosed, HiOutlineUser } from "react-icons/hi";
 import { MdPortrait } from 'react-icons/md';
+
 
 import LogInImage from '../../images/login/loginscreen.jpg'
 import usePasswordToggle from '../hooks/usePasswordToggle.js'
@@ -16,6 +19,7 @@ const SignUp = ({ getEmail }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [typingPassword, setTypingPassword] = useState(false);
   const [typingConfirmPassword, setTypingConfirmPassword] = useState(false);
+  const [userImage, setUserImage] = useState();
   const [error, setError] = useState('');
 
   const [PasswordType, ToggleIcon] = usePasswordToggle();
@@ -47,6 +51,22 @@ const SignUp = ({ getEmail }) => {
     .catch((err) => {
       console.log(err)
       setError('Email is already in the system. Do you have an account?')
+    })
+  }
+
+  const uploadImage = () => {
+    if (!userImage) {
+      return
+    }
+    const imageRef = ref(storage, `/images/${userImage.name}`)
+
+
+    uploadBytes(imageRef, userImage)
+    .then((snapshot) => {
+      getDownloadURL(snapshot.ref)
+      .then((url) => {
+        console.log(url)
+      })
     })
   }
 
@@ -140,6 +160,17 @@ const SignUp = ({ getEmail }) => {
           <div className= 'login-link-container'>
             <span className= 'login-need-an-account'>Already have an account? </span>
             <a className= 'sign-up-link login-need-an-account'>Log in!</a>
+          </div>
+
+          <div>
+            <input
+              type= 'file'
+              onChange= {(e) => {
+                setUserImage(e.target.files[0])
+              }}
+            >
+            </input>
+            <button onClick= {uploadImage}>Upload</button>
           </div>
 
         </form>
