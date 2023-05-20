@@ -320,6 +320,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .sign-up-user-image {
@@ -334,6 +335,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: relative;
+}
+
+.sign-up-upload-profile-pic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0.0;
+  cursor: pointer;
+}
+
+.sign-up-profile-pic {
+  height: 200px;
+  width: 200px;
+  padding: 10px;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 .sign-up-error-message {

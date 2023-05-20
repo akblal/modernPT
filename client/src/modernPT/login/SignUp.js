@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { auth } from '../../firebase.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { storage } from '../../firebase.js'
@@ -19,7 +19,8 @@ const SignUp = ({ getEmail }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [typingPassword, setTypingPassword] = useState(false);
   const [typingConfirmPassword, setTypingConfirmPassword] = useState(false);
-  const [userImage, setUserImage] = useState();
+  const [profilePic, setProfilePic] = useState();
+  const [profilePicURL, setProfilePicURL] = useState();
   const [error, setError] = useState('');
 
   const [PasswordType, ToggleIcon] = usePasswordToggle();
@@ -55,20 +56,24 @@ const SignUp = ({ getEmail }) => {
   }
 
   const uploadImage = () => {
-    if (!userImage) {
+    if (!profilePic) {
       return
     }
-    const imageRef = ref(storage, `/images/${userImage.name}`)
+    const imageRef = ref(storage, `/images/${profilePic.name}`)
 
-
-    uploadBytes(imageRef, userImage)
+    uploadBytes(imageRef, profilePic)
     .then((snapshot) => {
       getDownloadURL(snapshot.ref)
       .then((url) => {
         console.log(url)
+        setProfilePicURL(url)
       })
     })
   }
+
+  useEffect(() => {
+    uploadImage();
+  }, [profilePic])
 
   return (
     <div className= 'login-page-container'>
@@ -106,10 +111,19 @@ const SignUp = ({ getEmail }) => {
                   </div>
                 </div>
               </div>
-
-              <div className= 'sign-up-user-image-container'>
-                <div className= 'sign-up-user-image'>
-                  <MdPortrait className= 'sign-up-portrait-icon'/>
+                <div className= 'sign-up-user-image-container'>
+                  <div className= 'sign-up-user-image'>
+                  <input
+                    type= 'file'
+                    onChange= {(e) => {
+                      setProfilePic(e.target.files[0])
+                    }}
+                    className= 'sign-up-upload-profile-pic'
+                  />
+                  {profilePicURL && profilePicURL.length > 0 ?
+                    <img src= {profilePicURL} alt= 'profile pic'  className= 'sign-up-profile-pic'/>:
+                    <MdPortrait className= 'sign-up-portrait-icon'/>
+                  }
                 </div>
               </div>
             </div>
@@ -163,14 +177,7 @@ const SignUp = ({ getEmail }) => {
           </div>
 
           <div>
-            <input
-              type= 'file'
-              onChange= {(e) => {
-                setUserImage(e.target.files[0])
-              }}
-            >
-            </input>
-            <button onClick= {uploadImage}>Upload</button>
+
           </div>
 
         </form>
