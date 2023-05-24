@@ -9,6 +9,7 @@ const root = createRoot(container);
 import HomePage from './modernPT/HomePage.jsx'
 import SignIn from './modernPT/login/SignIn.js'
 import SignUp from './modernPT/login/SignUp.js'
+import PatientNotes from './modernPT/PatientNotes.jsx'
 
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
         </div>
       </div>
       {/* <SignUp getEmail= {getEmail}/> */}
-      <SignIn getEmail= {getEmail}/>
+      {/* <SignIn getEmail= {getEmail}/> */}
+      <PatientNotes />
     </div>
   );
 }

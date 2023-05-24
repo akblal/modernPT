@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin-right: 50px;
   font-family: 'Source Sans Pro', sans-serif;;
 }
 
@@ -75,6 +74,7 @@
   flex-direction: column;
   /* border: solid green 2px; */
   margin-top: 50px;
+  margin-right: 100px;
   padding: 10px;
   width: 100%;
 }
@@ -144,7 +144,7 @@
   position: absolute;
   box-sizing:border-box;
   top: 38px;
-  right: 28px;
+  right: 35px;
   transform: translateY(-50%);
   cursor: pointer;
   display: flex;
@@ -520,4 +520,261 @@
   height: 50px;
   border-radius: 10px;
   background-color: white;
+}
+
+.patient-notes-page-container {
+  margin-left: 50px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: row;
+  min-width: 1950px;
+  min-height: 1000px;
+}
+
+.appointment-log-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.patient-notes-appointment-log-container{
+  display: flex;
+  width: 775px;
+  /* border: 1px solid green; */
+  height: 80vh;
+  margin-top: 40px;
+  margin-right: 20px;
+  flex-direction: column;
+}
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.page-item {
+  margin-left: 10px;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #4c5fee;
+  background-color: #fff;
+  text-decoration: none;
+  font-size: 40px;
+}
+
+.bold-text {
+  font-weight: 600;
+}
+
+.center-arrow {
+  padding-top: 14px;
+}
+
+.hide-arrow {
+  color: white;
+  cursor: default;
+}
+
+.appointment-log-container {
+  flex-grow: 1;
+  max-width: 800px;
+  height: 740px;
+}
+
+.appointment-log-title-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  font-size: 65px;
+  font-weight: 900;
+}
+
+.appointment-list-container {
+  width: 100%;
+}
+
+.selected-appointment-log-summary-container,
+.appointment-log-summary-container {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  margin-right: 50px;
+  cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+  padding-left: 5px;
+  font-size: 35px;
+  opacity: 0.3;
+  transition: 0.2s ease-in;
+  max-width: 700px;
+}
+
+.selected-appointment-log-summary-container {
+  opacity: 1;
+}
+
+.appointment-log-summary-container:hover {
+  opacity: 0.8;
+}
+
+.appointment-log-left-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.appointment-log-therapist-picture-container {
+  border: 1px solid #f7b33f;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+.appointment-log-right-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 12;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.appointment-log-bottom-border {
+  border-bottom: 3px #f7b33f solid;
+  padding-bottom: 10px;
+}
+
+.appointment-log-top-right-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  border-top: 3px #f7b33f solid;
+  padding-top: 10px;
+}
+
+.appointment-log-appointment-type {
+  display: flex;
+  flex: row;
+  justify-content: flex-start;
+  flex-grow: 5;
+  font-weight: bold;
+}
+
+.appointment-log-time-stamp {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-grow: 1;
+  font-size: 25px;
+}
+
+.appointment-log-bottom-container {
+  display: flex;
+  flex-grow: 1;
+  font-size: 30px;
+  font-size: 25px;
+}
+
+.appointment-log-reason-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.appointment-log-reason-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.appointment-log-arrow-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.appointment-log-right-arrow {
+  font-size: 100px;
+  font-weight: 400;
+}
+
+.appointment-log-right-arrow {
+  margin-left:-20px;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  color: #4c5fee;
+}
+
+.bounce {
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+/* Scroll down indicator (bouncing) */
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateX(0); }
+  40% {
+    -webkit-transform: translateX(-30px); }
+  60% {
+    -webkit-transform: translateX(-15px); } }
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateX(0); }
+  40% {
+    -moz-transform: translateX(-30px); }
+  60% {
+    -moz-transform: translateX(-15px); } }
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0); }
+  40% {
+    -webkit-transform: translateX(-30px);
+    -moz-transform: translateX(-30px);
+    -ms-transform: translateX(-30px);
+    -o-transform: translateX(-30px);
+    transform: translateX(-30px); }
+  60% {
+    -webkit-transform: translateX(-15px);
+    -moz-transform: translateX(-15px);
+    -ms-transform: translateX(-15px);
+    -o-transform: translateX(-15px);
+    transform: translateX(-15px); } }
+
+    .hidden-arrow {
+      color: white;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.patient-notes-individual-note-container{
+  display: flex;
+  flex-grow: 3;
+  border: 1px solid red;
+  height: 80vh;
+  margin-top: 40px;
 }
