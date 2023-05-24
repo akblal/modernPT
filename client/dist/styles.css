@@ -568,6 +568,22 @@
   font-size: 40px;
 }
 
+.page-link:active {
+  animation: press 0.2s 1 linear;
+}
+
+@keyframes press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.80);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 .bold-text {
   font-weight: 600;
 }
