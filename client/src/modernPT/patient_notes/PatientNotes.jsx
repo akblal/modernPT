@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AppointmentLog from './AppointmentLog.jsx';
-import Pagination from './Pagination.jsx';
+import Pagination from '../Pagination.jsx';
+import IndividualNote from './IndividualNote.jsx'
 
 import axios from 'axios';
 
@@ -13,8 +14,8 @@ const PatientNotes = () => {
   const [notesPerPage] = useState(5);
 
   const indexLastNote= currentPage * notesPerPage;
-  const indexFistNote= indexLastNote - notesPerPage;
-  const currentNotes= patientNotes.slice(indexFistNote, indexLastNote)
+  const indexFirstNote= indexLastNote - notesPerPage;
+  const currentNotes= patientNotes.slice(indexFirstNote, indexLastNote)
 
   useEffect(() => {
     const fetchNotes = () => {
@@ -22,6 +23,8 @@ const PatientNotes = () => {
       .then((result) => {
         console.log(result.data.reverse());
         setPatientNotes(result.data);
+        setNote(result.data[0])
+
       })
       .catch((err) => {
         console.log(err)
@@ -30,20 +33,25 @@ const PatientNotes = () => {
     fetchNotes();
   }, [])
 
-  const paginate = (number) => setCurrentPage(number)
+  useEffect(() => {
+    setNote(patientNotes[indexFirstNote])
+  }, [currentPage])
+
+  const paginate = (number) => {
+    setCurrentPage(number)
+  }
 
   return (
     <div className= 'patient-notes-page-container'>
       <div className= 'patient-notes-appointment-log-container'>
-        <AppointmentLog setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage}/>
+        <AppointmentLog indexFirstNote= {indexFirstNote} setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage}/>
         <div className= 'appointment-log-pagination'>
           <Pagination notesPerPage= {notesPerPage} totalNotes= {patientNotes.length} paginate= {paginate} currentPage= {currentPage}/>
         </div>
       </div>
 
-      <div className= 'patient-notes-individual-note-container'>
-        Individual Note
-      </div>
+      <IndividualNote note= {note}/>
+
     </div>
 
   )

@@ -9,7 +9,7 @@ const root = createRoot(container);
 import HomePage from './modernPT/HomePage.jsx'
 import SignIn from './modernPT/login/SignIn.js'
 import SignUp from './modernPT/login/SignUp.js'
-import PatientNotes from './modernPT/PatientNotes.jsx'
+import PatientNotes from './modernPT/patient_notes/PatientNotes.jsx'
 
 
 function App() {

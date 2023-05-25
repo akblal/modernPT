@@ -732,8 +732,8 @@
 }
 
 .bounce {
-    -webkit-animation: bounce 2s infinite;
-    animation: bounce 2s infinite;
+    -webkit-animation: bounce 1.5s infinite;
+    animation: bounce 1.5s infinite;
 }
 
 /* Scroll down indicator (bouncing) */
@@ -771,26 +771,50 @@
     -o-transform: translateX(-15px);
     transform: translateX(-15px); } }
 
-    .hidden-arrow {
-      color: white;
-    }
+.hidden-arrow {
+  color: white;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-.patient-notes-individual-note-container{
+.individual-note-container{
   display: flex;
   flex-grow: 3;
   border: 1px solid red;
   height: 80vh;
   margin-top: 40px;
+  flex-direction: column;
+}
+
+.individual-note-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.therapist-patient-pic-container {
+  border: 1px solid green;
+  display: flex;
+}
+
+.individual-note-visit-information-container {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 30px;
+  flex-direction: column;
+}
+
+.individual-note-date-time-container,
+.therapist-patient-pic-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.individual-note-therapist-picture-container,
+.individual-note-patient-picture-container {
+  border-radius: 50%;
+  width: 80px;
+}
+
+.individual-note-date-time-container {
+  font-size: 30px;
 }

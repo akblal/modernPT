@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ImArrowRight2 } from "react-icons/im";
 
-const AppointmentLog = ({ setNote, currentNotes, totalNotes, currentPage, notesPerPage }) => {
+const AppointmentLog = ({ note, setNote, currentNotes, totalNotes, currentPage, notesPerPage }) => {
 
 
   const [selectedNote, setSelectedNote] = useState(0);
   const [hoveredNote, setHoveredNote] = useState(-1);
+
+
+  useEffect(() => {
+    if (currentNotes.length > 0) {
+      setSelectedNote(currentNotes[0].id)
+    }
+  }, [JSON.stringify(currentNotes)])
 
   return (
     <div className= 'appointment-log-container'>
@@ -18,16 +25,15 @@ const AppointmentLog = ({ setNote, currentNotes, totalNotes, currentPage, notesP
             return (
               <div
                 key= {note.id}
-                className= {selectedNote === index ? 'selected-appointment-log-summary-container': 'appointment-log-summary-container'}
+                className= {selectedNote === note.id ? 'selected-appointment-log-summary-container': 'appointment-log-summary-container'}
                 onClick= {() => {
-                  setSelectedNote(index)
-                  setNote(index)
+                  setSelectedNote(note.id)
+                  setNote(note)
                 }}
-                onMouseOver= {() => setHoveredNote(index)}
+                onMouseOver= {() => setHoveredNote(note.id)}
                 onMouseOut= {() => setHoveredNote(-1)}>
                 <div className= 'appointment-log-left-container'>
-                  <img className= 'appointment-log-therapist-picture-container' src= {note.therapist_profile_pic}>
-                  </img>
+                  <img className= 'appointment-log-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
                 </div>
                 <div className=  'appointment-log-right-container'>
                   <div className= 'appointment-log-top-right-container'>
@@ -39,7 +45,7 @@ const AppointmentLog = ({ setNote, currentNotes, totalNotes, currentPage, notesP
                       <div>Reason: Right Knee Pain Knee knee knee </div>
                     </div>
                     <div className= 'appointment-log-arrow-container'>
-                      <ImArrowRight2 className= {hoveredNote === index && selectedNote != hoveredNote? 'appointment-log-right-arrow bounce' : 'appointment-log-right-arrow hidden-arrow'}/>
+                      <ImArrowRight2 className= {hoveredNote === note.id && selectedNote != hoveredNote? 'appointment-log-right-arrow bounce' : 'appointment-log-right-arrow hidden-arrow'}/>
                     </div>
                   </div>
                 </div>
@@ -49,18 +55,8 @@ const AppointmentLog = ({ setNote, currentNotes, totalNotes, currentPage, notesP
           null
         }
       </div>
-
-
     </div>
   )
 }
 
 export default AppointmentLog
-
-/*the visit count will be determined by the position in the array
-ex. [{1}, {2}, {3}]
-
-appointment listing 3 will be visit 3
-appointment listing 2 will be visit 2
-appointment listing 1 will be visit 1
-*/
