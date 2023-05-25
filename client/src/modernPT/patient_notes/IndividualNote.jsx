@@ -6,12 +6,23 @@ const IndividualNote = ({ note }) => {
     console.log(note, 'individual note')
   }
 
+
+
+  if (!note) {
+    return (
+      <div className= 'individual-note-loading-note'>
+        <div className= 'loading-spinner'>
+          Loading Content...
+        </div>
+      </div>
+    )
+  }
   return (
     <div className= 'individual-note-container'>
       <div className= 'individual-note-header'>
         <div className= 'individual-note-visit-information-container'>
-          <div>Therapist's Name:</div>
-          <div>Visit Number: </div>
+          <div>Therapist's Name:{note.therapist_name} </div>
+          <div>Visit Number: {note.id}</div>
           <div>Reason for Visit:</div>
         </div>
         <div className= 'therapist-patient-pic-container'>

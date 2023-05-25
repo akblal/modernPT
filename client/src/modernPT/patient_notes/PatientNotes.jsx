@@ -24,7 +24,6 @@ const PatientNotes = () => {
         console.log(result.data.reverse());
         setPatientNotes(result.data);
         setNote(result.data[0])
-
       })
       .catch((err) => {
         console.log(err)
