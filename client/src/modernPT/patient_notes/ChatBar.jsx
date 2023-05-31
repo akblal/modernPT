@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
 const ChatBar = ({ chatLog, setChatLog, note }) => {
 
@@ -31,9 +32,15 @@ const ChatBar = ({ chatLog, setChatLog, note }) => {
   }
   return (
     <div className= 'chat-box-container'>
-      <span>Video</span>
-      <span>Photo</span>
-      <span>Attachment</span>
+      <div className= 'chat-box-icons-container'>
+        <TbPhotoPlus className= 'chat-box-icons'/>
+      </div>
+      <div className= 'chat-box-icons-container'>
+        <TbPaperclip className= 'chat-box-icons'/>
+      </div>
+
+
+
 
       <div>
         <select onChange= {handleChange} className= 'patient-chat-select-option-container'>

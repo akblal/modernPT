@@ -992,13 +992,13 @@ p:after {
 }
 
 .patient-chat-select-option-container {
-  height: 50px;
-  width: 200px;
+  height: 53px;
+  width: 225px;
   font-size: 20px;
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 25px;
-  padding: 5px 10px;
+  padding: 10px 20px;
 }
 
 .patient-chat-text-field-container {
@@ -1009,4 +1009,16 @@ p:after {
   border-radius: 25px;
   background-color: white;
   border: 1px #f7b33f solid;
+}
+
+.chat-box-icons-container {
+  padding-bottom: 7px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat-box-icons {
+  font-size: 40px;
+  cursor: pointer;
 }

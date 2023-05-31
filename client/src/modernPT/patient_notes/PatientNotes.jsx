@@ -41,19 +41,6 @@ const PatientNotes = () => {
     setNote(patientNotes[indexFirstNote])
   }, [currentPage])
 
-
-  // const getChatHistory = async() => {
-  //   if (note) {
-  //     const fetchChatHistory = await axios.get(`/getChatHistory/${note.id}`);
-  //     const chatHistory = fetchChatHistory.data.rows;
-  //     setChatLog(chatHistory)
-  //   }
-  // }
-  // //get chat history base on the note id
-  // useEffect(() => {
-  //   getChatHistory()
-  // }, [note])
-
   const paginate = (number) => {
     setCurrentPage(number)
   }
@@ -71,10 +58,7 @@ const PatientNotes = () => {
         <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog}/>
         <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note}/>
       </div>
-
-
     </div>
-
   )
 }
 

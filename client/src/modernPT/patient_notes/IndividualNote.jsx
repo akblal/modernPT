@@ -14,6 +14,7 @@ const IndividualNote = ({ note, chatLog, setChatLog }) => {
       setChatLog(chatHistory)
     }
   }
+
   //get chat history base on the note id
   useEffect(() => {
     getChatHistory()
@@ -58,32 +59,32 @@ const IndividualNote = ({ note, chatLog, setChatLog }) => {
             <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
           </div>
 
-
           <p className= 'individual-note-receive-message'>
             {note.subjective}
           </p>
 
-
         </div>
+
         <div className= 'individual-note-objective-treatment-container'>
           Objective
         </div>
+
         <div className= 'individual-note-assessment-container'>
           <div className= 'individual-note-therapist-profile-pic-container'>
             <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
           </div>
+
           <p className= 'individual-note-receive-message'>
             {note.assessment}
           </p>
 
         </div>
+
         <div className= 'individual-note-hep-update-container'>
           HEP Update
         </div>
 
-
       </div>
-
 
       <div className= 'individual-note-chat-container'>
         <div>
