@@ -46,7 +46,7 @@ const ChatBar = ({ chatLog, setChatLog, note }) => {
         </select>
       </div>
 
-      <form onSubmit= {storeMessage}>
+      <form onSubmit= {message.trim().length && storeMessage}>
         <label>
           <input
             type= 'text'

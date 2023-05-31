@@ -15,6 +15,7 @@ app.use(express.json());
 app.get(`/user/:address`, controller.user)
 app.get('/getPatientNotes/:id', controller.getPatientNotes)
 app.get('/getLastMessage/:message_id', controller.getLastMessage)
+app.get('/getChatHistory/:id', controller.getChatHistory)
 
 app.post('/saveChat', controller.saveChat)
 

@@ -11,7 +11,6 @@ module.exports = {
   },
   getPatientNotes(req, res) {
     const id = req.params.id;
-    // console.log(id, 'in controller for getting patient notes')
     model.getPatientNotes(id)
     .then((result) => {
       res.send(JSON.stringify(result.rows)).status(200)
@@ -35,5 +34,15 @@ module.exports = {
       res.send(result)
     })
     .catch((err) => console.log(err, 'in controller--> save chat'))
+  },
+  getChatHistory(req,res) {
+    const noteID = req.params.id;
+    model.getChatHistory(noteID)
+    .then((result) => {
+      console.log(result, ' in controller')
+      res.send(result)
+      res.status(201)
+    })
+    .catch((err) => console.log (err, 'in controller --> get Chat history'))
   }
 }

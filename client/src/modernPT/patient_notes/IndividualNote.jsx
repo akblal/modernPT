@@ -1,10 +1,23 @@
 import React, { useEffect, useRef } from 'react';
+import axios from 'axios';
 
-const IndividualNote = ({ note, chatLog }) => {
+const IndividualNote = ({ note, chatLog, setChatLog }) => {
 
   // if (note) {
   //   console.log(note, 'individual note')
   // }
+
+  const getChatHistory = async() => {
+    if (note) {
+      const fetchChatHistory = await axios.get(`/getChatHistory/${note.id}`);
+      const chatHistory = fetchChatHistory.data.rows;
+      setChatLog(chatHistory)
+    }
+  }
+  //get chat history base on the note id
+  useEffect(() => {
+    getChatHistory()
+  }, [note])
 
   const messagesEndRef = useRef(null)
 

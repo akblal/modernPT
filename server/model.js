@@ -35,19 +35,25 @@ module.exports = {
   saveChat(data) {
     return new Promise ((resolve, reject) => {
       const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id) VALUES ('${data.message}', ${data.patient_id}, ${data.therapist_id}, ${data.note_id}) RETURNING chat_id, chat_message, note_id;`
-
       pool.query (queryStatement, (err, result) => {
         if(err) {
           return reject (err)
         }
-        // console.log(result, 'result in model')
         resolve(result)
       })
     })
   },
-  // getLastMessage(message_id) {
-  //   return new Promise ((resolve, reject) => {
-  //     const queryStatement =
-  //   })
-  // }
+  getChatHistory(id) {
+    console.log (id, 'id in model')
+    return new Promise ((resolve, reject) => {
+      const queryStatement = `SELECT * FROM chat_with_therapist WHERE note_id = ${id};`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject(err)
+        }
+        //console.log(result, 'result in model')
+        resolve(result)
+      })
+    })
+  }
 }

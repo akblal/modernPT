@@ -993,7 +993,7 @@ p:after {
 
 .patient-chat-select-option-container {
   height: 50px;
-  width: 150px;
+  width: 200px;
   font-size: 20px;
   margin-left: 10px;
   margin-right: 10px;
@@ -1007,4 +1007,6 @@ p:after {
   font-size: 25px;
   padding: 10px 20px;
   border-radius: 25px;
+  background-color: white;
+  border: 1px #f7b33f solid;
 }
