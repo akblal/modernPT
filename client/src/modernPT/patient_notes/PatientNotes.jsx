@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AppointmentLog from './AppointmentLog.jsx';
 import Pagination from '../Pagination.jsx';
 import IndividualNote from './IndividualNote.jsx'
+import ChatBar from './ChatBar.jsx'
 
 import axios from 'axios';
 
@@ -12,6 +13,8 @@ const PatientNotes = () => {
 
   const [currentPage, setCurrentPage] =  useState(1);
   const [notesPerPage] = useState(5);
+
+  const [chatLog, setChatLog] = useState([]);
 
   const indexLastNote= currentPage * notesPerPage;
   const indexFirstNote= indexLastNote - notesPerPage;
@@ -40,6 +43,10 @@ const PatientNotes = () => {
     setCurrentPage(number)
   }
 
+  useEffect(() => {
+    console.log(chatLog, 'in parent')
+  }, [chatLog])
+
   return (
     <div className= 'patient-notes-page-container'>
       <div className= 'patient-notes-appointment-log-container'>
@@ -49,7 +56,11 @@ const PatientNotes = () => {
         </div>
       </div>
 
-      <IndividualNote note= {note}/>
+      <div className= 'patient-notes-chat-container'>
+        <IndividualNote note= {note} chatLog= {chatLog}/>
+        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note}/>
+      </div>
+
 
     </div>
 

@@ -14,6 +14,9 @@ app.use(express.json());
 
 app.get(`/user/:address`, controller.user)
 app.get('/getPatientNotes/:id', controller.getPatientNotes)
+app.get('/getLastMessage/:message_id', controller.getLastMessage)
+
+app.post('/saveChat', controller.saveChat)
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {

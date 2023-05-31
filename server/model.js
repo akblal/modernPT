@@ -16,7 +16,6 @@ module.exports = {
     })
   },
   getPatientNotes(id) {
-    console.log(id, 'in model');
     return new Promise ((resolve, reject) => {
       const queryStatement= `SELECT patient.id, patient.patient_name, patient_note.*, therapist.therapist_name, therapist.therapist_profile_pic
       FROM patient
@@ -29,9 +28,26 @@ module.exports = {
         if(err) {
           return reject (err)
         }
-        console.log(result, 'result in model')
         resolve(result)
       })
     })
-  }
+  },
+  saveChat(data) {
+    return new Promise ((resolve, reject) => {
+      const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id) VALUES ('${data.message}', ${data.patient_id}, ${data.therapist_id}, ${data.note_id}) RETURNING chat_id, chat_message, note_id;`
+
+      pool.query (queryStatement, (err, result) => {
+        if(err) {
+          return reject (err)
+        }
+        // console.log(result, 'result in model')
+        resolve(result)
+      })
+    })
+  },
+  // getLastMessage(message_id) {
+  //   return new Promise ((resolve, reject) => {
+  //     const queryStatement =
+  //   })
+  // }
 }
