@@ -1,7 +1,7 @@
  -- DROP TABLE IF EXISTS patient_note CASCADE;
 -- DROP TABLE IF EXISTS patient CASCADE;
 -- DROP TABLE IF EXISTS therapist CASCADE;
--- DROP TABLE IF EXISTS chat_with_therapist CASCADE;
+DROP TABLE IF EXISTS chat_with_therapist CASCADE;
 
 
 -- CREATE TABLE patient (
@@ -45,6 +45,7 @@ CREATE TABLE chat_with_therapist(
   patient_id INT NOT NULL,
   therapist_id INT NOT NULL,
   note_id INT NOT NULL,
+  comment_type TEXT NOT NULL,
   CONSTRAINT fk_patient
     FOREIGN KEY(patient_id)
       REFERENCES patient(id),

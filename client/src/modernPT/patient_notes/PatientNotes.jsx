@@ -14,6 +14,8 @@ const PatientNotes = () => {
   const [currentPage, setCurrentPage] =  useState(1);
   const [notesPerPage] = useState(5);
 
+  const [option, setOption] = useState('');
+
   const [chatLog, setChatLog] = useState([]);
 
   const indexLastNote= currentPage * notesPerPage;
@@ -55,8 +57,8 @@ const PatientNotes = () => {
       </div>
 
       <div className= 'patient-notes-chat-container'>
-        <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog}/>
-        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note}/>
+        <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog} option= {option}/>
+        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} option= {option} setOption= {setOption}/>
       </div>
     </div>
   )

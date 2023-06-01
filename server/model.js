@@ -34,17 +34,26 @@ module.exports = {
   },
   saveChat(data) {
     return new Promise ((resolve, reject) => {
-      const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id) VALUES ('${data.message}', ${data.patient_id}, ${data.therapist_id}, ${data.note_id}) RETURNING chat_id, chat_message, note_id;`
+      console.log(data, 'data')
+      // if (data.comment_type.indexOf("'")) {
+      //   console.log('has apostrophe')
+      //   let index= data.comment_type.indexOf("'")
+      //   let temp = data.comment_type.substring(0, index) + "'" + data.comment_type.substring(index)
+      //   data.comment_type = temp;
+      // }
+      const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id, comment_type) VALUES ('${data.message}', ${data.patient_id}, ${data.therapist_id}, ${data.note_id}, '${data.comment_type}') RETURNING chat_id, chat_message, note_id, comment_type;`
       pool.query (queryStatement, (err, result) => {
         if(err) {
+          console.log (err, 'inmodel')
           return reject (err)
         }
+        console.log(result, 'in model')
         resolve(result)
       })
     })
   },
   getChatHistory(id) {
-    console.log (id, 'id in model')
+    // console.log (id, 'id in model')
     return new Promise ((resolve, reject) => {
       const queryStatement = `SELECT * FROM chat_with_therapist WHERE note_id = ${id};`
       pool.query(queryStatement, (err, result) => {

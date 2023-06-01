@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
-const IndividualNote = ({ note, chatLog, setChatLog }) => {
+const IndividualNote = ({ note, chatLog, setChatLog, option }) => {
 
   // if (note) {
   //   console.log(note, 'individual note')
@@ -93,7 +93,7 @@ const IndividualNote = ({ note, chatLog, setChatLog }) => {
               if (message.note_id  === note.id){
                 return (
                   <div key= {message.chat_id} className='individual-note-patient-chat-container'>
-
+                    <div>{message.comment_type}</div>
                     <p className= 'individual-note-send-message'>
                       {message.chat_message}
                     </p>
