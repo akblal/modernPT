@@ -92,6 +92,7 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat }) => {
           {chatLog &&
             chatLog.map((message) => {
               if (message.note_id  === note.id){
+                console.log(message)
                 return (
                   <div key= {message.chat_id} className= 'individual-note-section-chat-container'>
 
@@ -101,6 +102,7 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat }) => {
                         setEditChat({
                           chat_id: message.chat_id,
                           comment_type: message.comment_type,
+                          chat_message: message.chat_message,
                         })} className= 'individual-note-add-chat-to-section'/>
                     </div>
                     <div className='individual-note-patient-chat-container'>

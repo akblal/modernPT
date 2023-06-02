@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
 const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEditChat }) => {
+
+  console.log(editChat.chat_message, 'message ot be edited')
 
   const [message, setMessage] = useState('');
   const [dropdownOptions, setDropdownOptions] = useState([
@@ -31,6 +33,11 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
       title: 'Other'
     },
   ])
+  const [editMessage, setEditMessage] = useState(editChat.chat_message);
+
+  useEffect(() => {
+    setEditMessage(editChat.chat_message)
+  }, [editChat])
 
   const handleChange = (e) => {
     setOption(e.target.value);
@@ -61,7 +68,6 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
       setOption('')
 
       if (editChat.comment_type) {
-        console.log('reset edit chat')
         setEditChat({})
       }
 
@@ -96,6 +102,36 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
       }
 
       <form onSubmit= {message.trim().length && storeMessage}>
+        {editChat && editChat.comment_type ?
+          <div>
+
+            <label>
+            <input
+              type= 'text'
+              // value= {message}
+              defaultValue= {editMessage}
+              onChange= {(e) => {
+                setMessage(e.target.value)
+              }}
+              className= 'patient-chat-text-field-container'>
+            </input>
+          </label>
+          </div> :
+          <label>
+            <input
+              type= 'text'
+              disabled= {!option.length}
+              placeholder= {!option.length ? 'Select Topic' : undefined}
+              value= {message}
+              onChange= {(e) => {
+                setMessage(e.target.value)
+              }}
+              className= 'patient-chat-text-field-container'>
+            </input>
+          </label>
+        }
+      </form>
+      {/* <form onSubmit= {message.trim().length && storeMessage}>
         <label>
           <input
             type= 'text'
@@ -108,7 +144,10 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
             className= 'patient-chat-text-field-container'>
           </input>
         </label>
-      </form>
+      </form> */}
+
+
+
    </div>
  )
 }

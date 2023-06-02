@@ -46,12 +46,10 @@ const PatientNotes = () => {
   }, [currentPage])
 
   useEffect(() => {
-    console.log(editChat)
+    // console.log(editChat)
     if (editChat.comment_type) {
       setOption(editChat.comment_type)
-      console.log (editChat.comment_type)
     }
-
   }, [editChat])
 
   const paginate = (number) => {
