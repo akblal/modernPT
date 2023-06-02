@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
-const IndividualNote = ({ note, chatLog, setChatLog, option }) => {
+import { CiEdit } from "react-icons/ci";
+const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat }) => {
 
   // if (note) {
   //   console.log(note, 'individual note')
@@ -92,15 +93,26 @@ const IndividualNote = ({ note, chatLog, setChatLog, option }) => {
             chatLog.map((message) => {
               if (message.note_id  === note.id){
                 return (
-                  <div key= {message.chat_id} className='individual-note-patient-chat-container'>
-                    <div>{message.comment_type}</div>
-                    <p className= 'individual-note-send-message'>
-                      {message.chat_message}
-                    </p>
+                  <div key= {message.chat_id} className= 'individual-note-section-chat-container'>
 
-                    <div className= 'individual-note-patient-profile-pic-container'>
-                      <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
+                    <div className= 'individual-note-section-title-container'>
+                      <div>{message.comment_type}</div>
+                      <CiEdit onClick= { () =>
+                        setEditChat({
+                          chat_id: message.chat_id,
+                          comment_type: message.comment_type,
+                        })} className= 'individual-note-add-chat-to-section'/>
                     </div>
+                    <div className='individual-note-patient-chat-container'>
+                      <p className= 'individual-note-send-message'>
+                        {message.chat_message}
+                      </p>
+
+                      <div className= 'individual-note-patient-profile-pic-container'>
+                        <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
+                      </div>
+                    </div>
+
                   </div>
                 )
               }

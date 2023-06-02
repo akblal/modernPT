@@ -891,11 +891,33 @@
   flex-grow: 2;
 }
 
+.individual-note-section-chat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.individual-note-section-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.individual-note-add-chat-to-section {
+  font-size: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.individual-note-add-chat-to-section:active {
+  transform: scale(80%);
+}
+
 .individual-note-patient-chat-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-
 }
 
 .individual-note-therapist-profile-pic-container {

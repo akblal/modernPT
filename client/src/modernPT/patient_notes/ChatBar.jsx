@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
-const ChatBar = ({ chatLog, setChatLog, note, option, setOption }) => {
+const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEditChat }) => {
 
   const [message, setMessage] = useState('');
   const [dropdownOptions, setDropdownOptions] = useState([
@@ -37,6 +37,11 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption }) => {
     console.log(e.target.value)
   };
 
+  const handleEdit = (e) => {
+    setOption('Edit');
+    setEditChat()
+  };
+
   const storeMessage = async(e) => {
     e.preventDefault();
     try {
@@ -55,6 +60,11 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption }) => {
       setDropdownOptions(reducedOptions)
       setOption('')
 
+      if (editChat.comment_type) {
+        console.log('reset edit chat')
+        setEditChat({})
+      }
+
     } catch(err) {
       console.log(err, 'error in store message')
     }
@@ -69,13 +79,21 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption }) => {
         <TbPaperclip className= 'chat-box-icons'/>
       </div>
 
-      <div>
-        <select onChange= {handleChange} className= 'patient-chat-select-option-container' value= {option}>
-          {dropdownOptions.map((item) => {
-            return <option value= {item.title} key= {item.value}>{item.title}</option>
-          })}
-        </select>
-      </div>
+      {editChat && editChat.comment_type ?
+        <div>
+          <select onChange= {handleEdit} className= 'patient-chat-select-option-container' value= {'Edit'}>
+              <option value= {'Edit'} disabled= {true}>Edit</option>
+          </select>
+        </div> :
+
+        <div>
+          <select onChange= {handleChange} className= 'patient-chat-select-option-container' value= {option}>
+            {dropdownOptions.map((item) => {
+              return <option value= {item.title}  key= {item.value}>{item.title}</option>
+            })}
+          </select>
+        </div>
+      }
 
       <form onSubmit= {message.trim().length && storeMessage}>
         <label>

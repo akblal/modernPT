@@ -18,6 +18,8 @@ const PatientNotes = () => {
 
   const [chatLog, setChatLog] = useState([]);
 
+  const [editChat, setEditChat] = useState({});
+
   const indexLastNote= currentPage * notesPerPage;
   const indexFirstNote= indexLastNote - notesPerPage;
   const currentNotes= patientNotes.slice(indexFirstNote, indexLastNote)
@@ -43,6 +45,15 @@ const PatientNotes = () => {
     setNote(patientNotes[indexFirstNote])
   }, [currentPage])
 
+  useEffect(() => {
+    console.log(editChat)
+    if (editChat.comment_type) {
+      setOption(editChat.comment_type)
+      console.log (editChat.comment_type)
+    }
+
+  }, [editChat])
+
   const paginate = (number) => {
     setCurrentPage(number)
   }
@@ -57,8 +68,8 @@ const PatientNotes = () => {
       </div>
 
       <div className= 'patient-notes-chat-container'>
-        <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog} option= {option}/>
-        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} option= {option} setOption= {setOption}/>
+        <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog} option= {option} setEditChat= {setEditChat}/>
+        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} option= {option} setOption= {setOption} editChat= {editChat} setEditChat= {setEditChat}/>
       </div>
     </div>
   )
