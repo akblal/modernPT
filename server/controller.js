@@ -46,5 +46,16 @@ module.exports = {
       res.status(201)
     })
     .catch((err) => console.log (err, 'in controller --> get Chat history'))
+  },
+  editChat(req, res) {
+    console.log(req.body)
+    const data = req.body;
+    model.editChat(data)
+    .then((result) => {
+      res.send(result)
+      res.status(200)
+    })
+    .catch((err) => console.log (err, 'in controller--> edit chat'))
+
   }
 }

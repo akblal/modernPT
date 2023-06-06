@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 import { CiEdit } from "react-icons/ci";
-const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat }) => {
+const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat,editChat }) => {
 
   // if (note) {
   //   console.log(note, 'individual note')
@@ -19,7 +19,7 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat }) => {
   //get chat history base on the note id
   useEffect(() => {
     getChatHistory()
-  }, [note])
+  }, [note, editChat])
 
   const messagesEndRef = useRef(null)
 

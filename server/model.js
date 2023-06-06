@@ -35,12 +35,7 @@ module.exports = {
   saveChat(data) {
     return new Promise ((resolve, reject) => {
       console.log(data, 'data')
-      // if (data.comment_type.indexOf("'")) {
-      //   console.log('has apostrophe')
-      //   let index= data.comment_type.indexOf("'")
-      //   let temp = data.comment_type.substring(0, index) + "'" + data.comment_type.substring(index)
-      //   data.comment_type = temp;
-      // }
+
       const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id, comment_type) VALUES ('${data.message}', ${data.patient_id}, ${data.therapist_id}, ${data.note_id}, '${data.comment_type}') RETURNING chat_id, chat_message, note_id, comment_type;`
       pool.query (queryStatement, (err, result) => {
         if(err) {
@@ -55,12 +50,23 @@ module.exports = {
   getChatHistory(id) {
     // console.log (id, 'id in model')
     return new Promise ((resolve, reject) => {
-      const queryStatement = `SELECT * FROM chat_with_therapist WHERE note_id = ${id};`
+      const queryStatement = `SELECT * FROM chat_with_therapist WHERE note_id = ${id} ORDER BY chat_id ASC;`
       pool.query(queryStatement, (err, result) => {
         if (err) {
           return reject(err)
         }
         //console.log(result, 'result in model')
+        resolve(result)
+      })
+    })
+  },
+  editChat(chat) {
+    return new Promise((resolve, reject) => {
+      const queryStatement= `UPDATE chat_with_therapist SET chat_message = '${chat.message}' WHERE chat_id = ${chat.chat_id};`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject(err)
+        }
         resolve(result)
       })
     })

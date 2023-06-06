@@ -4,7 +4,7 @@ import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
 const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEditChat }) => {
 
-  console.log(editChat.chat_message, 'message ot be edited')
+  console.log(editChat, 'message ot be edited')
 
   const [message, setMessage] = useState('');
   const [dropdownOptions, setDropdownOptions] = useState([
@@ -76,6 +76,35 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
     }
 
   }
+
+  const editAndSaveMessage = async(e) => {
+    e.preventDefault();
+    try {
+      const save = await axios.put('/editChat', {
+        message: message,
+        patient_id: 1,
+        therapist_id: 1,
+        note_id: note.id,
+        comment_type: option,
+        chat_id: editChat.chat_id,
+      })
+
+      // setChatLog([...chatLog, save.data.rows[0]])
+      setMessage('')
+      // const reducedOptions = dropdownOptions.filter(item => item.value != option || item.value === 'Other');
+      // console.log(reducedOptions)
+      // setDropdownOptions(reducedOptions)
+      setOption('')
+
+      if (editChat.comment_type) {
+        setEditChat({})
+      }
+
+    } catch(err) {
+      console.log(err, 'error in store message')
+    }
+
+  }
   return (
     <div className= 'chat-box-container'>
       <div className= 'chat-box-icons-container'>
@@ -101,7 +130,7 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
         </div>
       }
 
-      <form onSubmit= {message.trim().length && storeMessage}>
+      <form onSubmit= {editChat && editChat.comment_type ? message.trim().length && editAndSaveMessage : message.trim().length && storeMessage}>
         {editChat && editChat.comment_type ?
           <div>
 
@@ -131,25 +160,6 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
           </label>
         }
       </form>
-      {/* <form onSubmit= {message.trim().length && storeMessage}>
-        <label>
-          <input
-            type= 'text'
-            disabled= {!option.length}
-            placeholder= {!option.length ? 'Select Topic' : undefined}
-            value= {message}
-            onChange= {(e) => {
-              setMessage(e.target.value)
-            }}
-            className= 'patient-chat-text-field-container'>
-          </input>
-        </label>
-      </form> */}
-
-
-
-   </div>
- )
-}
-
+      </div>
+)}
 export default ChatBar
