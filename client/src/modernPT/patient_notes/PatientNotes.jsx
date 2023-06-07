@@ -20,6 +20,8 @@ const PatientNotes = () => {
 
   const [editChat, setEditChat] = useState({});
 
+  const [message, setMessage] = useState('');
+
   const indexLastNote= currentPage * notesPerPage;
   const indexFirstNote= indexLastNote - notesPerPage;
   const currentNotes= patientNotes.slice(indexFirstNote, indexLastNote)
@@ -47,7 +49,7 @@ const PatientNotes = () => {
 
   useEffect(() => {
     // console.log(editChat)
-    if (editChat.comment_type) {
+    if (editChat && editChat.comment_type) {
       setOption(editChat.comment_type)
     }
   }, [editChat])
@@ -59,7 +61,7 @@ const PatientNotes = () => {
   return (
     <div className= 'patient-notes-page-container'>
       <div className= 'patient-notes-appointment-log-container'>
-        <AppointmentLog indexFirstNote= {indexFirstNote} setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage}/>
+        <AppointmentLog indexFirstNote= {indexFirstNote} setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage} setOption={setOption} setMessage= {setMessage} setEditChat= {setEditChat}/>
         <div className= 'appointment-log-pagination'>
           <Pagination notesPerPage= {notesPerPage} totalNotes= {patientNotes.length} paginate= {paginate} currentPage= {currentPage}/>
         </div>
@@ -67,7 +69,7 @@ const PatientNotes = () => {
 
       <div className= 'patient-notes-chat-container'>
         <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog} option= {option} setEditChat= {setEditChat} editChat= {editChat}/>
-        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} option= {option} setOption= {setOption} editChat= {editChat} setEditChat= {setEditChat}/>
+        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} option= {option} setOption= {setOption} editChat= {editChat} setEditChat= {setEditChat} message= {message} setMessage= {setMessage}/>
       </div>
     </div>
   )

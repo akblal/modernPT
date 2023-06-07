@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
-const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEditChat }) => {
+const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEditChat, message, setMessage }) => {
 
   console.log(editChat, 'message ot be edited')
+  // console.log(chatLog, 'this is chatlog')
+  // console.log(note, 'this is the note')
 
-  const [message, setMessage] = useState('');
+
   const [dropdownOptions, setDropdownOptions] = useState([
     {
       value: '',
@@ -33,10 +35,24 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
       title: 'Other'
     },
   ])
-  const [editMessage, setEditMessage] = useState(editChat.chat_message);
+
+  const [editMessage, setEditMessage] = useState('');
+  const [optionName, setOptionName] = useState('')
+
+  // useEffect(() => {
+  //   setOptionName(option)
+  //   console.log (option, 'this is the option')
+  // }, [option])
 
   useEffect(() => {
-    setEditMessage(editChat.chat_message)
+    if (editChat) {
+      setEditMessage(editChat.chat_message)
+    }
+    else {
+      setEditMessage('')
+      setMessage('')
+    }
+
   }, [editChat])
 
   const handleChange = (e) => {
@@ -58,6 +74,7 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
         therapist_id: 1,
         note_id: note.id,
         comment_type: option,
+
       })
 
       setChatLog([...chatLog, save.data.rows[0]])
@@ -89,11 +106,8 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
         chat_id: editChat.chat_id,
       })
 
-      // setChatLog([...chatLog, save.data.rows[0]])
       setMessage('')
-      // const reducedOptions = dropdownOptions.filter(item => item.value != option || item.value === 'Other');
-      // console.log(reducedOptions)
-      // setDropdownOptions(reducedOptions)
+
       setOption('')
 
       if (editChat.comment_type) {

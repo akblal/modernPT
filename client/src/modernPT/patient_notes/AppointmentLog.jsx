@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ImArrowRight2 } from "react-icons/im";
 
-const AppointmentLog = ({ note, setNote, currentNotes, totalNotes, currentPage, notesPerPage }) => {
+const AppointmentLog = ({ note, setNote, currentNotes, totalNotes, currentPage, notesPerPage, setEditChat, setOption, setMessage }) => {
 
 
   const [selectedNote, setSelectedNote] = useState(0);
@@ -29,6 +29,9 @@ const AppointmentLog = ({ note, setNote, currentNotes, totalNotes, currentPage, 
                 onClick= {() => {
                   setSelectedNote(note.id)
                   setNote(note)
+                  setEditChat();
+                  setOption('')
+                  setMessage('')
                 }}
                 onMouseOver= {() => setHoveredNote(note.id)}
                 onMouseOut= {() => setHoveredNote(-1)}>
