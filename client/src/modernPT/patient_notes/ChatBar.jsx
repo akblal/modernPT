@@ -4,53 +4,56 @@ import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
 const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEditChat, message, setMessage }) => {
 
-  console.log(editChat, 'message ot be edited')
+  // console.log(editChat, 'message ot be edited')
   // console.log(chatLog, 'this is chatlog')
-  // console.log(note, 'this is the note')
+
+
+  useEffect(() => {
+    console.log(note, 'this is the note')
+  }, [note])
 
 
   const [dropdownOptions, setDropdownOptions] = useState([
     {
-      value: '',
-      title: 'Select'
+      'value': '',
+      'title': 'Select'
     },
     {
-      value: 'Visit',
-      title: "Visit"
+      'value': 'Visit',
+      'title': "Visit"
     },
     {
-      value: 'Flare Up',
-      title: 'Flare Up'
+      'value': 'Flare Up',
+      'title': 'Flare Up'
     },
     {
-      value: 'Change in Goal',
-      title: 'Change in Goal'
+      'value': 'Change in Goal',
+      'title': 'Change in Goal'
     },
     {
-      value: 'HEP',
-      title: 'HEP'
+      'value': 'HEP',
+      'title': 'HEP'
     },
     {
-      value: 'Other',
-      title: 'Other'
+      'value': 'Other',
+      'title': 'Other'
     },
   ])
 
   const [editMessage, setEditMessage] = useState('');
   const [optionName, setOptionName] = useState('')
 
-  // useEffect(() => {
-  //   setOptionName(option)
-  //   console.log (option, 'this is the option')
-  // }, [option])
-
   useEffect(() => {
     if (editChat) {
       setEditMessage(editChat.chat_message)
+
     }
     else {
       setEditMessage('')
       setMessage('')
+    }
+    if (editChat && editChat.chat_message) {
+      setMessage(editChat.chat_message)
     }
 
   }, [editChat])
@@ -96,26 +99,37 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
 
   const editAndSaveMessage = async(e) => {
     e.preventDefault();
-    try {
-      const save = await axios.put('/editChat', {
-        message: message,
-        patient_id: 1,
-        therapist_id: 1,
-        note_id: note.id,
-        comment_type: option,
-        chat_id: editChat.chat_id,
-      })
+    console.log (message, 'messagw')
+    if (message != editMessage) {
 
-      setMessage('')
+      try {
+        const save = await axios.put('/editChat', {
+          message: message,
+          patient_id: 1,
+          therapist_id: 1,
+          note_id: note.id,
+          comment_type: option,
+          chat_id: editChat.chat_id,
+        })
+        console.log('different')
+        setMessage('')
 
+        setOption('')
+
+        if (editChat.comment_type) {
+          setEditChat({})
+        }
+
+      } catch(err) {
+        console.log(err, 'error in store message')
+      }
+    } else {
+      console.log('same')
       setOption('')
-
+      setMessage('')
       if (editChat.comment_type) {
         setEditChat({})
       }
-
-    } catch(err) {
-      console.log(err, 'error in store message')
     }
 
   }
@@ -147,18 +161,24 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
       <form onSubmit= {editChat && editChat.comment_type ? message.trim().length && editAndSaveMessage : message.trim().length && storeMessage}>
         {editChat && editChat.comment_type ?
           <div>
-
             <label>
-            <input
-              type= 'text'
-              // value= {message}
-              defaultValue= {editMessage}
-              onChange= {(e) => {
-                setMessage(e.target.value)
-              }}
-              className= 'patient-chat-text-field-container'>
-            </input>
-          </label>
+              <input
+                type= 'text'
+                // value= {editMessage}
+                defaultValue= {editMessage}
+                onChange= {(e) => {
+                  if (e.target.value.length > 0) {
+                    console.log (e.target.value, 'e.target.value')
+                    setMessage(e.target.value)
+                  } else {
+                    console.log (e.target.value, 'e.target.value same')
+                    setMessage(editMessage)
+                  }
+
+                }}
+                className= 'patient-chat-text-field-container'>
+              </input>
+            </label>
           </div> :
           <label>
             <input

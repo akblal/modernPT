@@ -1,4 +1,4 @@
- -- DROP TABLE IF EXISTS patient_note CASCADE;
+ DROP TABLE IF EXISTS patient_note CASCADE;
 -- DROP TABLE IF EXISTS patient CASCADE;
 -- DROP TABLE IF EXISTS therapist CASCADE;
 DROP TABLE IF EXISTS chat_with_therapist CASCADE;
@@ -19,24 +19,25 @@ DROP TABLE IF EXISTS chat_with_therapist CASCADE;
 --   therapist_profile_pic TEXT NOT NULL
 -- );
 
--- CREATE TABLE patient_note (
---   id SERIAL PRIMARY KEY,
---   date_written DATE DEFAULT NOW(),
---   subjective TEXT NOT NULL,
---   objective TEXT NOT NULL,
---   assessment TEXT NOT NULL,
---   treatment_provided TEXT NOT NULL,
---   billing TEXT NOT NULL,
---   patient_id INT NOT NULL,
---   therapist_id INT NOT NULL,
---   appointment_type VARCHAR (100) NOT NULL,
---   CONSTRAINT fk_patient
---     FOREIGN KEY(patient_id)
---       REFERENCES patient(id),
---   CONSTRAINT fk_therapist
---     FOREIGN KEY (therapist_id)
---       REFERENCES therapist(id)
--- );
+CREATE TABLE patient_note (
+  id SERIAL PRIMARY KEY,
+  date_written DATE DEFAULT NOW(),
+  subjective TEXT NOT NULL,
+  objective TEXT NOT NULL,
+  assessment TEXT NOT NULL,
+  treatment_provided TEXT NOT NULL,
+  billing TEXT NOT NULL,
+  patient_id INT NOT NULL,
+  therapist_id INT NOT NULL,
+  appointment_type VARCHAR (100) NOT NULL,
+  chat_selection_type VARCHAR(20)[],
+  CONSTRAINT fk_patient
+    FOREIGN KEY(patient_id)
+      REFERENCES patient(id),
+  CONSTRAINT fk_therapist
+    FOREIGN KEY (therapist_id)
+      REFERENCES therapist(id)
+);
 
 CREATE TABLE chat_with_therapist(
   chat_id SERIAL PRIMARY KEY,

@@ -8,16 +8,18 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat,editCha
   //   console.log(note, 'individual note')
   // }
 
-  const getChatHistory = async() => {
-    if (note) {
-      const fetchChatHistory = await axios.get(`/getChatHistory/${note.id}`);
-      const chatHistory = fetchChatHistory.data.rows;
-      setChatLog(chatHistory)
-    }
-  }
+
 
   //get chat history base on the note id
   useEffect(() => {
+    const getChatHistory = async() => {
+      if (note) {
+        const fetchChatHistory = await axios.get(`/getChatHistory/${note.id}`);
+        const chatHistory = fetchChatHistory.data.rows;
+        setChatLog(chatHistory)
+      }
+    }
+
     getChatHistory()
   }, [note, editChat])
 
