@@ -528,7 +528,7 @@
   margin-right: 100px;
   display: flex;
   flex-direction: row;
-  min-width: 1950px;
+  max-width: 1950px;
   /* min-height: 1000px; */
   width: 100%;
   /* padding-bottom: 100px; */
