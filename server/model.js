@@ -34,15 +34,13 @@ module.exports = {
   },
   saveChat(data) {
     return new Promise ((resolve, reject) => {
-      console.log(data, 'data')
+      //console.log(data, 'data')
 
       const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id, comment_type) VALUES ('${data.message}', ${data.patient_id}, ${data.therapist_id}, ${data.note_id}, '${data.comment_type}') RETURNING chat_id, chat_message, note_id, comment_type;`
       pool.query (queryStatement, (err, result) => {
         if(err) {
-          console.log (err, 'inmodel')
           return reject (err)
         }
-        console.log(result, 'in model')
         resolve(result)
       })
     })
@@ -63,6 +61,18 @@ module.exports = {
   editChat(chat) {
     return new Promise((resolve, reject) => {
       const queryStatement= `UPDATE chat_with_therapist SET chat_message = '${chat.message}' WHERE chat_id = ${chat.chat_id};`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject(err)
+        }
+        resolve(result)
+      })
+    })
+  },
+  reducedOptions(options) {
+    return new Promise((resolve, reject) => {
+      console.log(options)
+      const queryStatement= `UPDATE patient_note SET chat_selection_type = '${options.selection_options}' WHERE id = ${options.note_id};`
       pool.query(queryStatement, (err, result) => {
         if (err) {
           return reject(err)

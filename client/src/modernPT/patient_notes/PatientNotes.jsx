@@ -69,7 +69,7 @@ const PatientNotes = () => {
 
       <div className= 'patient-notes-chat-container'>
         <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog} option= {option} setEditChat= {setEditChat} editChat= {editChat}/>
-        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} option= {option} setOption= {setOption} editChat= {editChat} setEditChat= {setEditChat} message= {message} setMessage= {setMessage}/>
+        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} setNote={setNote} option= {option} setOption= {setOption} editChat= {editChat} setEditChat= {setEditChat} message= {message} setMessage= {setMessage}/>
       </div>
     </div>
   )

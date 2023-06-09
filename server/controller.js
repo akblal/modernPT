@@ -32,7 +32,7 @@ module.exports = {
     model.saveChat(data)
     .then((result) => {
       res.status(201)
-      console.log(result, 'result in controller')
+      // console.log(result, 'result in controller')
       res.send(result)
     })
     .catch((err) => console.log(err, 'in controller--> save chat'))
@@ -48,7 +48,7 @@ module.exports = {
     .catch((err) => console.log (err, 'in controller --> get Chat history'))
   },
   editChat(req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     const data = req.body;
     model.editChat(data)
     .then((result) => {
@@ -56,6 +56,15 @@ module.exports = {
       res.status(200)
     })
     .catch((err) => console.log (err, 'in controller--> edit chat'))
-
+  },
+  reducedOptions(req, res) {
+    //console.log(req)
+    const data = req.body;
+    model.reducedOptions(data)
+    .then((results) => {
+      res.send(results)
+      res.status(201)
+    })
+    .catch((err) => console.log(err, 'in controller --> reduce options'))
   }
 }

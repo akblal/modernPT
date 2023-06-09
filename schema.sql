@@ -30,7 +30,7 @@ CREATE TABLE patient_note (
   patient_id INT NOT NULL,
   therapist_id INT NOT NULL,
   appointment_type VARCHAR (100) NOT NULL,
-  chat_selection_type VARCHAR(20)[],
+  chat_selection_type json,
   CONSTRAINT fk_patient
     FOREIGN KEY(patient_id)
       REFERENCES patient(id),
@@ -81,7 +81,58 @@ CREATE TABLE chat_with_therapist(
 -- INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type) VALUES ('this is the subjective2', 'this is the objective2', 'this is the assessment2', 'this is the treatment provided2', 'this is the billing2', 1, 2, 'Flareup');
 -- INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type) VALUES ('this is the subjective3', 'this is the objective3', 'this is the assessment3', 'this is the treatment provided3', 'this is the billing3', 1, 1, 'Scheduled Visit');
 -- INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type) VALUES ('this is the subjective', 'this is the objective', 'this is the assessment', 'this is the treatment provided', 'this is the billing', 1, 1, 'Scheduled Visit');
-
+INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type, chat_selection_type) VALUES ('Joanie reports that she continues to have R knee pain, although the pain has decreased when she is going up and down stairs. Down hurts worse than up. Describes the pain as dull in the R ant lat compartment. Was sharper a couple weeks ago. She has been working on the HEP on a daily basis without symptoms.', 'this is the objective', 'Joanie is responding well to progressive loading of the knee joint. Introduced SL stsbilization exercises today and pt was able to perform cpt morgan and dynamic lunging without limitation. Required VC to maintain neutral LE posture, but was able to quickly adjust without visual or mirror cues. Continue to progress as appropriate.', 'this is the treatment provided', 'this is the billing', 1, 1, 'Scheduled Visit', '[
+    {
+      "value": "",
+      "title": "Select"
+    },
+    {
+      "value": "Visit",
+      "title": "Visit"
+    },
+    {
+      "value": "Flare Up",
+      "title": "Flare Up"
+    },
+    {
+      "value": "Change in Goal",
+      "title": "Change in Goal"
+    },
+    {
+      "value": "HEP",
+      "title": "HEP"
+    },
+    {
+      "value": "Other",
+      "title": "Other"
+    }
+  ]');
+  INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type, chat_selection_type) VALUES ( 'this is the subjective2', 'this is the objective2', 'this is the assessment2', 'this is the treatment provided2', 'this is the billing2', 1, 2, 'Flareup', '[
+    {
+      "value": "",
+      "title": "Select"
+    },
+    {
+      "value": "Visit",
+      "title": "Visit"
+    },
+    {
+      "value": "Flare Up",
+      "title": "Flare Up"
+    },
+    {
+      "value": "Change in Goal",
+      "title": "Change in Goal"
+    },
+    {
+      "value": "HEP",
+      "title": "HEP"
+    },
+    {
+      "value": "Other",
+      "title": "Other"
+    }
+  ]');
 
 -- INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id) VALUES ('testing', 1, 1);
 

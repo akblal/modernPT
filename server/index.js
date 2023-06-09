@@ -20,7 +20,7 @@ app.get('/getChatHistory/:id', controller.getChatHistory)
 app.post('/saveChat', controller.saveChat)
 
 app.put('/editChat', controller.editChat)
-
+app.put('/reduceOptions', controller.reducedOptions)
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
     if (err) {

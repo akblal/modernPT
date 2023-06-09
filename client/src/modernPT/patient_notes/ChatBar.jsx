@@ -2,46 +2,53 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
-const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEditChat, message, setMessage }) => {
+const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editChat, setEditChat, message, setMessage }) => {
 
   // console.log(editChat, 'message ot be edited')
   // console.log(chatLog, 'this is chatlog')
-
 
   useEffect(() => {
     console.log(note, 'this is the note')
   }, [note])
 
 
-  const [dropdownOptions, setDropdownOptions] = useState([
-    {
-      'value': '',
-      'title': 'Select'
-    },
-    {
-      'value': 'Visit',
-      'title': "Visit"
-    },
-    {
-      'value': 'Flare Up',
-      'title': 'Flare Up'
-    },
-    {
-      'value': 'Change in Goal',
-      'title': 'Change in Goal'
-    },
-    {
-      'value': 'HEP',
-      'title': 'HEP'
-    },
-    {
-      'value': 'Other',
-      'title': 'Other'
-    },
-  ])
+  // const [dropdownOptions, setDropdownOptions] = useState([
+  //   {
+  //     'value': '',
+  //     'title': 'Select'
+  //   },
+  //   {
+  //     'value': 'Visit',
+  //     'title': "Visit"
+  //   },
+  //   {
+  //     'value': 'Flare Up',
+  //     'title': 'Flare Up'
+  //   },
+  //   {
+  //     'value': 'Change in Goal',
+  //     'title': 'Change in Goal'
+  //   },
+  //   {
+  //     'value': 'HEP',
+  //     'title': 'HEP'
+  //   },
+  //   {
+  //     'value': 'Other',
+  //     'title': 'Other'
+  //   },
+  // ])
 
   const [editMessage, setEditMessage] = useState('');
-  const [optionName, setOptionName] = useState('')
+  const [optionName, setOptionName] = useState('');
+  const [removedSelection, setRemovedSelection] = useState()
+
+  useEffect(() => {
+    if (note) {
+      setRemovedSelection(note.chat_selection_type)
+      console.log(note, 'in use effect')
+    }
+  }, [note])
 
   useEffect(() => {
     if (editChat) {
@@ -82,9 +89,20 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
 
       setChatLog([...chatLog, save.data.rows[0]])
       setMessage('')
-      const reducedOptions = dropdownOptions.filter(item => item.value != option || item.value === 'Other');
-      console.log(reducedOptions)
-      setDropdownOptions(reducedOptions)
+
+      const reducedOptions = removedSelection.filter(item => item.value != option || item.value === 'Other');
+      console.log(reducedOptions, 'options left over')
+
+      const reduceSelections = await axios.put('/reduceOptions', {
+        note_id: note.id,
+        selection_options: JSON.stringify(reducedOptions)
+      })
+      const updatedNote = {...note, chat_selection_type: reducedOptions}
+      setNote(updatedNote)
+      setRemovedSelection(reducedOptions)
+
+
+      // setDropdownOptions(reducedOptions)
       setOption('')
 
       if (editChat.comment_type) {
@@ -111,7 +129,6 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
           comment_type: option,
           chat_id: editChat.chat_id,
         })
-        console.log('different')
         setMessage('')
 
         setOption('')
@@ -124,7 +141,6 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
         console.log(err, 'error in store message')
       }
     } else {
-      console.log('same')
       setOption('')
       setMessage('')
       if (editChat.comment_type) {
@@ -151,9 +167,13 @@ const ChatBar = ({ chatLog, setChatLog, note, option, setOption, editChat, setEd
 
         <div>
           <select onChange= {handleChange} className= 'patient-chat-select-option-container' value= {option}>
-            {dropdownOptions.map((item) => {
-              return <option value= {item.title}  key= {item.value}>{item.title}</option>
-            })}
+            {removedSelection && removedSelection.length?
+              removedSelection.map((item) => {
+                return <option value= {item.title}  key= {item.value}>{item.title}</option>
+              }) :
+              null
+            }
+
           </select>
         </div>
       }
