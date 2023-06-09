@@ -25,6 +25,7 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
     else {
       setEditMessage('')
       setMessage('')
+      setOption('')
     }
     if (editChat && editChat.chat_message) {
       setMessage(editChat.chat_message)
