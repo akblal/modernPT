@@ -11,7 +11,6 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
     console.log(note, 'this is the note')
   }, [note])
 
-
   // const [dropdownOptions, setDropdownOptions] = useState([
   //   {
   //     'value': '',
@@ -46,7 +45,6 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
   useEffect(() => {
     if (note) {
       setRemovedSelection(note.chat_selection_type)
-      console.log(note, 'in use effect')
     }
   }, [note])
 
@@ -91,35 +89,29 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
       setMessage('')
 
       const reducedOptions = removedSelection.filter(item => item.value != option || item.value === 'Other');
-      console.log(reducedOptions, 'options left over')
+      // console.log(reducedOptions, 'options left over')
 
       const reduceSelections = await axios.put('/reduceOptions', {
         note_id: note.id,
         selection_options: JSON.stringify(reducedOptions)
       })
+
       const updatedNote = {...note, chat_selection_type: reducedOptions}
       setNote(updatedNote)
       setRemovedSelection(reducedOptions)
-
-
-      // setDropdownOptions(reducedOptions)
       setOption('')
 
       if (editChat.comment_type) {
         setEditChat({})
       }
-
     } catch(err) {
       console.log(err, 'error in store message')
     }
-
   }
 
   const editAndSaveMessage = async(e) => {
     e.preventDefault();
-    console.log (message, 'messagw')
     if (message != editMessage) {
-
       try {
         const save = await axios.put('/editChat', {
           message: message,
@@ -130,13 +122,11 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
           chat_id: editChat.chat_id,
         })
         setMessage('')
-
         setOption('')
 
         if (editChat.comment_type) {
           setEditChat({})
         }
-
       } catch(err) {
         console.log(err, 'error in store message')
       }

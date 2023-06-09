@@ -19,7 +19,6 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat,editCha
         setChatLog(chatHistory)
       }
     }
-
     getChatHistory()
   }, [note, editChat])
 
