@@ -4,39 +4,9 @@ import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
 const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editChat, setEditChat, message, setMessage }) => {
 
-  // console.log(editChat, 'message ot be edited')
-  // console.log(chatLog, 'this is chatlog')
-
   useEffect(() => {
     console.log(note, 'this is the note')
   }, [note])
-
-  // const [dropdownOptions, setDropdownOptions] = useState([
-  //   {
-  //     'value': '',
-  //     'title': 'Select'
-  //   },
-  //   {
-  //     'value': 'Visit',
-  //     'title': "Visit"
-  //   },
-  //   {
-  //     'value': 'Flare Up',
-  //     'title': 'Flare Up'
-  //   },
-  //   {
-  //     'value': 'Change in Goal',
-  //     'title': 'Change in Goal'
-  //   },
-  //   {
-  //     'value': 'HEP',
-  //     'title': 'HEP'
-  //   },
-  //   {
-  //     'value': 'Other',
-  //     'title': 'Other'
-  //   },
-  // ])
 
   const [editMessage, setEditMessage] = useState('');
   const [optionName, setOptionName] = useState('');
@@ -49,9 +19,8 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
   }, [note])
 
   useEffect(() => {
-    if (editChat) {
+    if (Object.values(editChat).length) {
       setEditMessage(editChat.chat_message)
-
     }
     else {
       setEditMessage('')
@@ -70,7 +39,7 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
 
   const handleEdit = (e) => {
     setOption('Edit');
-    setEditChat()
+    setEditChat({})
   };
 
   const storeMessage = async(e) => {
@@ -167,14 +136,16 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
           </select>
         </div>
       }
-
+      {
+        console.log(editChat, 'editchat', editMessage, 'editmessatge', message, 'message')
+      }
       <form onSubmit= {editChat && editChat.comment_type ? message.trim().length && editAndSaveMessage : message.trim().length && storeMessage}>
+
         {editChat && editChat.comment_type ?
           <div>
             <label>
               <input
                 type= 'text'
-                // value= {editMessage}
                 defaultValue= {editMessage}
                 onChange= {(e) => {
                   if (e.target.value.length > 0) {

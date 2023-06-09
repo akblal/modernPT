@@ -2,14 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 import { CiEdit } from "react-icons/ci";
-const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat,editChat }) => {
+import { MdOutlineCancel } from "react-icons/md";
 
-  // if (note) {
-  //   console.log(note, 'individual note')
-  // }
+const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editChat }) => {
 
-
-
+  console.log(editChat, 'editchat')
   //get chat history base on the note id
   useEffect(() => {
     const getChatHistory = async() => {
@@ -93,18 +90,30 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat,editCha
           {chatLog &&
             chatLog.map((message) => {
               if (message.note_id  === note.id){
-                console.log(message)
                 return (
                   <div key= {message.chat_id} className= 'individual-note-section-chat-container'>
 
                     <div className= 'individual-note-section-title-container'>
                       <div>{message.comment_type}</div>
-                      <CiEdit onClick= { () =>
-                        setEditChat({
-                          chat_id: message.chat_id,
-                          comment_type: message.comment_type,
-                          chat_message: message.chat_message,
-                        })} className= 'individual-note-add-chat-to-section'/>
+                      { Object.values(editChat) && editChat.chat_id === message.chat_id ?
+                        <MdOutlineCancel
+                          onClick= { () =>{
+                            setEditChat({})
+                            setMessage('')
+                          }}
+                          className= 'individual-note-add-chat-to-section'/> :
+                        <CiEdit
+                          onClick= { () =>
+                            setEditChat({
+                              chat_id: message.chat_id,
+                              comment_type: message.comment_type,
+                              chat_message: message.chat_message,
+                            })}
+                          className= 'individual-note-add-chat-to-section'/>
+
+
+                      }
+
                     </div>
                     <div className='individual-note-patient-chat-container'>
                       <p className= 'individual-note-send-message'>

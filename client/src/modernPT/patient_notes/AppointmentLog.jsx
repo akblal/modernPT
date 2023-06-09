@@ -29,7 +29,7 @@ const AppointmentLog = ({ note, setNote, currentNotes, totalNotes, currentPage, 
                 onClick= {() => {
                   setSelectedNote(note.id)
                   setNote(note)
-                  setEditChat();
+                  setEditChat({});
                   setOption('')
                   setMessage('')
                 }}
