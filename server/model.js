@@ -56,7 +56,7 @@ module.exports = {
   },
   editChat(chat) {
     return new Promise((resolve, reject) => {
-      const queryStatement= `UPDATE chat_with_therapist SET chat_message = '${chat.message}' WHERE chat_id = ${chat.chat_id};`
+      const queryStatement= `UPDATE chat_with_therapist SET chat_message = $$${chat.message}$$ WHERE chat_id = ${chat.chat_id};`
       pool.query(queryStatement, (err, result) => {
         if (err) {
           return reject(err)
