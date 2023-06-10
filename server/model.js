@@ -36,7 +36,7 @@ module.exports = {
     return new Promise ((resolve, reject) => {
       //console.log(data, 'data')
 
-      const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id, comment_type) VALUES ('${data.message}', ${data.patient_id}, ${data.therapist_id}, ${data.note_id}, '${data.comment_type}') RETURNING chat_id, chat_message, note_id, comment_type;`
+      const queryStatement= `INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id, note_id, comment_type) VALUES ($$${data.message}$$, ${data.patient_id}, ${data.therapist_id}, ${data.note_id}, '${data.comment_type}') RETURNING chat_id, chat_message, note_id, comment_type;`
       pool.query (queryStatement, (err, result) => {
         if(err) {
           return reject (err)
