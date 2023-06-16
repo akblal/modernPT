@@ -4,9 +4,9 @@ import { TbPhotoPlus, TbPaperclip } from "react-icons/tb";
 
 const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editChat, setEditChat, message, setMessage }) => {
 
-  useEffect(() => {
-    console.log(note, 'this is the note')
-  }, [note])
+  // useEffect(() => {
+  //   console.log(note, 'this is the note')
+  // }, [note])
 
   const [editMessage, setEditMessage] = useState('');
   const [optionName, setOptionName] = useState('');
@@ -14,6 +14,7 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
 
   useEffect(() => {
     if (note) {
+      console.log (note.chat_selection_type, 'in useeffect')
       setRemovedSelection(note.chat_selection_type)
     }
   }, [note])
@@ -35,7 +36,6 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
 
   const handleChange = (e) => {
     setOption(e.target.value);
-    console.log(e.target.value)
   };
 
   const handleEdit = (e) => {
@@ -61,14 +61,16 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
       const reducedOptions = removedSelection.filter(item => item.value != option || item.value === 'Other');
       // console.log(reducedOptions, 'options left over')
 
-      const reduceSelections = await axios.put('/reduceOptions', {
-        note_id: note.id,
-        selection_options: JSON.stringify(reducedOptions)
-      })
+      // const reduceSelections = await axios.put('/reduceOptions', {
+      //   note_id: note.id,
+      //   selection_options: JSON.stringify(reducedOptions)
+      // })
 
-      const updatedNote = {...note, chat_selection_type: reducedOptions}
-      setNote(updatedNote)
-      setRemovedSelection(reducedOptions)
+      // const updatedNote = {...note, chat_selection_type: reducedOptions}
+      // console.log (updatedNote, 'updated note in chat bar')
+      // setNote(updatedNote)
+      // setRemovedSelection(reducedOptions)
+      // console.log(reducedOptions, 'in removing function')
       setOption('')
 
       if (editChat.comment_type) {
@@ -137,9 +139,7 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
           </select>
         </div>
       }
-      {
-        console.log(editChat, 'editchat', editMessage, 'editmessatge', message, 'message')
-      }
+
       <form onSubmit= {editChat && editChat.comment_type ? message.trim().length && editAndSaveMessage : message.trim().length && storeMessage}>
 
         {editChat && editChat.comment_type ?
@@ -150,10 +150,8 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
                 defaultValue= {editMessage}
                 onChange= {(e) => {
                   if (e.target.value.length > 0) {
-                    console.log (e.target.value, 'e.target.value')
                     setMessage(e.target.value)
                   } else {
-                    console.log (e.target.value, 'e.target.value same')
                     setMessage(editMessage)
                   }
 

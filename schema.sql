@@ -26,6 +26,7 @@ CREATE TABLE patient_note (
   objective TEXT NOT NULL,
   assessment TEXT NOT NULL,
   treatment_provided TEXT NOT NULL,
+  hep_update json,
   billing TEXT NOT NULL,
   patient_id INT NOT NULL,
   therapist_id INT NOT NULL,
@@ -81,7 +82,7 @@ CREATE TABLE chat_with_therapist(
 -- INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type) VALUES ('this is the subjective2', 'this is the objective2', 'this is the assessment2', 'this is the treatment provided2', 'this is the billing2', 1, 2, 'Flareup');
 -- INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type) VALUES ('this is the subjective3', 'this is the objective3', 'this is the assessment3', 'this is the treatment provided3', 'this is the billing3', 1, 1, 'Scheduled Visit');
 -- INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type) VALUES ('this is the subjective', 'this is the objective', 'this is the assessment', 'this is the treatment provided', 'this is the billing', 1, 1, 'Scheduled Visit');
-INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type, chat_selection_type) VALUES ('Joanie reports that she continues to have R knee pain, although the pain has decreased when she is going up and down stairs. Down hurts worse than up. Describes the pain as dull in the R ant lat compartment. Was sharper a couple weeks ago. She has been working on the HEP on a daily basis without symptoms.', 'this is the objective', 'Joanie is responding well to progressive loading of the knee joint. Introduced SL stsbilization exercises today and pt was able to perform cpt morgan and dynamic lunging without limitation. Required VC to maintain neutral LE posture, but was able to quickly adjust without visual or mirror cues. Continue to progress as appropriate.', 'this is the treatment provided', 'this is the billing', 1, 1, 'Scheduled Visit', '[
+INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type, chat_selection_type, hep_update) VALUES ('Joanie reports that she continues to have R knee pain, although the pain has decreased when she is going up and down stairs. Down hurts worse than up. Describes the pain as dull in the R ant lat compartment. Was sharper a couple weeks ago. She has been working on the HEP on a daily basis without symptoms.', 'this is the objective', 'Joanie is responding well to progressive loading of the knee joint. Introduced SL stsbilization exercises today and pt was able to perform cpt morgan and dynamic lunging without limitation. Required VC to maintain neutral LE posture, but was able to quickly adjust without visual or mirror cues. Continue to progress as appropriate.', 'this is the treatment provided', 'this is the billing', 1, 1, 'Scheduled Visit', '[
     {
       "value": "",
       "title": "Select"
@@ -106,8 +107,36 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "value": "Other",
       "title": "Other"
     }
-  ]');
-  INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type, chat_selection_type) VALUES ( 'this is the subjective2', 'this is the objective2', 'this is the assessment2', 'this is the treatment provided2', 'this is the billing2', 1, 2, 'Flareup', '[
+  ]',
+  '[{
+      "name": "Incline Hammer Curls",
+      "muscle": "biceps",
+      "reps": 12,
+      "sets": 3,
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "status": "added"
+    },
+    {
+      "name": "Leg Press",
+      "muscle": "quads",
+      "reps": 12,
+      "sets": 3,
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "status": "added"
+    },
+    {
+      "name": "Captain Morgan",
+      "muscle": "glutes",
+      "reps": 12,
+      "sets": 3,
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "status": "added"
+    }]'
+  );
+  INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type, chat_selection_type, hep_update) VALUES ( 'this is the subjective2', 'this is the objective2', 'this is the assessment2', 'this is the treatment provided2', 'this is the billing2', 1, 2, 'Flareup', '[
     {
       "value": "",
       "title": "Select"
@@ -132,7 +161,20 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "value": "Other",
       "title": "Other"
     }
-  ]');
+  ]',
+  '[{
+      "name": "Incline Hammer Curls",
+      "muscle": "biceps",
+      "reps": 12,
+      "sets": 3,
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "status": "removed"
+
+    }]');
+
+
+
 
 -- INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id) VALUES ('testing', 1, 1);
 

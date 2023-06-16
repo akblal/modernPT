@@ -66,6 +66,7 @@ module.exports = {
     })
   },
   reducedOptions(options) {
+    console.log(options, 'options in model')
     return new Promise((resolve, reject) => {
       console.log(options)
       const queryStatement= `UPDATE patient_note SET chat_selection_type = '${options.selection_options}' WHERE id = ${options.note_id};`

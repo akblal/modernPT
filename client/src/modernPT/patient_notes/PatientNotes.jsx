@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AppointmentLog from './AppointmentLog.jsx';
+import AppointmentList from './AppointmentList.jsx';
 import Pagination from '../Pagination.jsx';
 import IndividualNote from './IndividualNote.jsx'
 import ChatBar from './ChatBar.jsx'
@@ -42,13 +42,12 @@ const PatientNotes = () => {
     fetchNotes();
   }, [])
 
-  //pagination
+  //pagination: selecting the note on the top of the page when clicking through pagination
   useEffect(() => {
     setNote(patientNotes[indexFirstNote])
   }, [currentPage])
 
   useEffect(() => {
-    // console.log(editChat)
     if (editChat && editChat.comment_type) {
       setOption(editChat.comment_type)
     }
@@ -61,7 +60,7 @@ const PatientNotes = () => {
   return (
     <div className= 'patient-notes-page-container'>
       <div className= 'patient-notes-appointment-log-container'>
-        <AppointmentLog indexFirstNote= {indexFirstNote} setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage} setOption={setOption} setMessage= {setMessage} setEditChat= {setEditChat}/>
+        <AppointmentList indexFirstNote= {indexFirstNote} setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage} setOption={setOption} setMessage= {setMessage} setEditChat= {setEditChat}/>
         <div className= 'appointment-log-pagination'>
           <Pagination notesPerPage= {notesPerPage} totalNotes= {patientNotes.length} paginate= {paginate} currentPage= {currentPage}/>
         </div>

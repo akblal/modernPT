@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
+import HEPCard from './HEPCard.js'
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineCancel } from "react-icons/md";
 
 const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editChat }) => {
 
-  console.log(editChat, 'editchat')
+  // console.log(editChat, 'editchat')
   //get chat history base on the note id
   useEffect(() => {
     const getChatHistory = async() => {
@@ -18,6 +19,10 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
     }
     getChatHistory()
   }, [note, editChat])
+
+  // useEffect(() => {
+  //   console.log(note, 'this is the note')
+  // }, [note])
 
   const messagesEndRef = useRef(null)
 
@@ -51,6 +56,9 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
           <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
         </div>
       </div>
+      {
+      console.log(note, 'this is the note')
+    }
 
       <div className= 'individual-note-therapist-note'>
         <div className= 'individual-note-subjective-container'>
@@ -81,6 +89,25 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
 
         <div className= 'individual-note-hep-update-container'>
           HEP Update
+          {note && note.hep_update.length &&
+            note.hep_update.map((hep) => {
+              if (hep.status === 'added') {
+                return (
+                  <HEPCard hep= {hep}/>
+                )
+              }
+            })
+          }
+
+          {note && note.hep_update.length &&
+            note.hep_update.map((hep) => {
+              if (hep.status === 'removed') {
+                return (
+                  <HEPCard hep= {hep} />
+                )
+              }
+            })
+          }
         </div>
 
       </div>
@@ -110,8 +137,6 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
                               chat_message: message.chat_message,
                             })}
                           className= 'individual-note-add-chat-to-section'/>
-
-
                       }
 
                     </div>

@@ -58,7 +58,6 @@ module.exports = {
     .catch((err) => console.log (err, 'in controller--> edit chat'))
   },
   reducedOptions(req, res) {
-    //console.log(req)
     const data = req.body;
     model.reducedOptions(data)
     .then((results) => {

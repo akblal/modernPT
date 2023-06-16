@@ -17,6 +17,20 @@ app.get('/getPatientNotes/:id', controller.getPatientNotes)
 app.get('/getLastMessage/:message_id', controller.getLastMessage)
 app.get('/getChatHistory/:id', controller.getChatHistory)
 
+// const request = require('request');
+// var muscle = 'biceps';
+// request.get({
+//   url: 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscle,
+//   headers: {
+//     'X-Api-Key': ''
+//   },
+//   offset: 1,
+// }, function(error, response, body) {
+//   if(error) return console.error('Request failed:', error);
+//   else if(response.statusCode != 200) return console.error('Error:', response.statusCode, body.toString('utf8'));
+//   else console.log(body)
+// });
+
 app.post('/saveChat', controller.saveChat)
 
 app.put('/editChat', controller.editChat)
