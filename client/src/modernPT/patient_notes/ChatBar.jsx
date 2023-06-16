@@ -16,8 +16,6 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
     }
   }, [note])
 
-
-
   const handleChange = (e) => {
     setOption(e.target.value);
   };
@@ -26,7 +24,6 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
     setOption('Edit');
     setEditChat({})
   };
-
 
   return (
     <div className= 'chat-box-container'>
@@ -52,7 +49,6 @@ const ChatBar = ({ chatLog, setChatLog, note, setNote, option, setOption, editCh
               }) :
               null
             }
-
           </select>
         </div>
       }
