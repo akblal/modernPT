@@ -4,10 +4,8 @@ import AppointmentCard from './AppointmentCard.jsx';
 
 const AppointmentList = ({ note, setNote, currentNotes, totalNotes, currentPage, notesPerPage, setEditChat, setOption, setMessage }) => {
 
-
   const [selectedNote, setSelectedNote] = useState(0);
   const [hoveredNote, setHoveredNote] = useState(-1);
-
 
   useEffect(() => {
     if (currentNotes.length > 0) {
