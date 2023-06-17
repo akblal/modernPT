@@ -81,7 +81,8 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
           }
 
           {removedHEP.length ?
-            <HEPCard hep= {removedHEP} /> : null
+            /* <HEPCard hep= {removedHEP} /> : null */
+            <TherapistNoteForPatient therapistText= {<HEPCard hep= {removedHEP}/>} />: null
           }
         </div>
       </div>
