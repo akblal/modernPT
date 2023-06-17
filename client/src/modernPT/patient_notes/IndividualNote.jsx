@@ -27,8 +27,8 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
   useEffect(() => {
     if (note) {
       let added = note.hep_update.filter(hep => hep.status === 'added');
-      setAddedHEP(added)
       let removed = note.hep_update.filter(hep => hep.status === 'removed');
+      setAddedHEP(added)
       setRemovedHEP(removed)
       console.log (added, removed, 'added, removed')
     }
@@ -76,7 +76,8 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
         <div className= 'individual-note-hep-update-container'>
           HEP Update
           {addedHEP.length ?
-            <HEPCard hep= {addedHEP}/> : null
+            /* <HEPCard hep= {addedHEP}/> : null */
+            <TherapistNoteForPatient therapistText= {<HEPCard hep= {addedHEP}/>} />: null
           }
 
           {removedHEP.length ?
