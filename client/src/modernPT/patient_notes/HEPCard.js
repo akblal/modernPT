@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ImArrowLeft2, ImArrowRight2 } from "react-icons/im";
+import { RxDotFilled, RxDot } from "react-icons/rx";
 
 const HEPCard = ({ hep }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,43 +17,57 @@ const HEPCard = ({ hep }) => {
     setCurrentIndex(newIndex)
   }
 
+  const goToSlide = (index) => {
+    setCurrentIndex(index)
+  }
+
   return (
-    <div>
-      <div className= 'patient-chat-hep-update'>
-        {hep.length > 1?
-          <div>
-            <div className= {'carousel-left-arrow'} onClick= {goPrevious}> back </div>
-            <div className= {'carousel-right-arrow'} onClick= {goNext}> next </div>
-          </div>:
-          null
-        }
+    <div className= 'patient-chat-hep-update'>
+      {hep.length > 1?
+        <div>
+          <ImArrowLeft2 className= {'carousel-left-arrow'} onClick= {goPrevious} />
+          <ImArrowRight2 className= {'carousel-right-arrow'} onClick= {goNext} />
+        </div>:
+        null
+      }
 
-        {hep.length &&
-          <div className= {hep[currentIndex].status === 'added' ? 'patient-chat-hep-update-container hep-added' : 'patient-chat-hep-update-container hep-removed'}>
-            <div className= 'patient-chat-hep-update-video-container'>
-              {hep[currentIndex].video}
-            </div>
+      {hep.length &&
+        <div className= {hep[currentIndex].status === 'added' ? 'patient-chat-hep-update-container hep-added' : 'patient-chat-hep-update-container hep-removed'}>
+          <div className= 'patient-chat-hep-update-video-container'>
+            {hep[currentIndex].video}
+          </div>
 
-            <div className= 'patient-chat-hep-update-exercise-info-container'>
-              {hep[currentIndex].status === 'added' &&
-                <div className= 'patient-chat-hep-update-exercise-name'>
-                  <div>{hep[currentIndex].name} added</div>
-                </div>
-              }
-              {hep[currentIndex].status === 'removed' &&
+          <div className= 'patient-chat-hep-update-exercise-info-container'>
+            {hep[currentIndex].status === 'added' &&
               <div className= 'patient-chat-hep-update-exercise-name'>
-                  <div>{hep[currentIndex].name} removed</div>
-                </div>
-              }
-
-              <div className= 'patient-chat-hep-update-exercise-scheme'>
-                <div> Sets: {hep[currentIndex].sets} </div>
-                <div> Reps: {hep[currentIndex].reps} </div>
+                <div>{hep[currentIndex].name} added</div>
               </div>
+            }
+            {hep[currentIndex].status === 'removed' &&
+            <div className= 'patient-chat-hep-update-exercise-name'>
+                <div>{hep[currentIndex].name} removed</div>
+              </div>
+            }
+
+            <div className= 'patient-chat-hep-update-exercise-scheme'>
+              <div> Sets: {hep[currentIndex].sets} </div>
+              <div> Reps: {hep[currentIndex].reps} </div>
             </div>
           </div>
-        }
-      </div>
+        </div>
+      }
+      {hep.length ?
+        <div className= 'carousel-dot-container'>
+          {hep.map((exercise, exerciseIndex) => {
+            if (exerciseIndex === currentIndex) {
+              return <RxDotFilled className= 'carousel-dot' />
+            } else {
+              return <RxDot className= 'carousel-dot' onClick= {() => goToSlide(exerciseIndex)} />
+            }
+          })}
+        </div> :
+        null
+      }
     </div>
   )
 }

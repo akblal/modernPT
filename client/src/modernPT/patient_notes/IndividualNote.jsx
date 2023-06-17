@@ -78,17 +78,11 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
           {addedHEP.length ?
             <HEPCard hep= {addedHEP}/> : null
           }
-          <div> ------------- </div>
-          <div> ------------- </div>
-          <div> ------------- </div>
-          <div> ------------- </div>
-          <div> ------------- </div>
-          <div> ------------- </div>
+
           {removedHEP.length ?
             <HEPCard hep= {removedHEP} /> : null
           }
         </div>
-
       </div>
 
       <div className= 'individual-note-chat-container'>
@@ -98,7 +92,6 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
               if (message.note_id  === note.id){
                 return (
                   <div key= {message.chat_id} className= 'individual-note-section-chat-container'>
-
                     <div className= 'individual-note-section-title-container'>
                       <div>{message.comment_type}</div>
                       { Object.values(editChat) && editChat.chat_id === message.chat_id ?

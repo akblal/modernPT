@@ -1052,29 +1052,38 @@ p:after {
 
 .patient-chat-hep-update {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
   padding-left: 100px;
+  width: 100%;
+  height: 100%;
+}
+
+.individual-note-hep-update-container {
+  width: 300px;
+  height: 400px;
 }
 
 .carousel-left-arrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  left: -3px;
+  left: 40px;
   font-size: 45px;
   z-index: 1;
   cursor: pointer;
+  color: #4c5fee;
 }
 
 .carousel-right-arrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  right: 670px;
+  right: -65px;
   font-size: 45px;
   z-index: 1;
   cursor: pointer;
+  color: #4c5fee;
 }
 
 .patient-chat-hep-update-container  {
@@ -1121,4 +1130,16 @@ p:after {
 
 .hep-removed {
   background-color: rgb(153, 95, 95);
+}
+
+.carousel-dot-container {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-dot {
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 50px;
+  color: #4c5fee;
 }
