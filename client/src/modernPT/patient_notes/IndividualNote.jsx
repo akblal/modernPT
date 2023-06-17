@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
+import TherapistNoteForPatient from './TherapistNoteForPatient.jsx'
 import HEPCard from './HEPCard.js'
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineCancel } from "react-icons/md";
 
 const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editChat }) => {
 
-  // console.log(editChat, 'editchat')
+  const messagesEndRef = useRef(null)
+  const [addedHEP, setAddedHEP] = useState([]);
+  const [removedHEP, setRemovedHEP] = useState([]);
+
   //get chat history base on the note id
   useEffect(() => {
     const getChatHistory = async() => {
@@ -20,11 +24,15 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
     getChatHistory()
   }, [note, editChat])
 
-  // useEffect(() => {
-  //   console.log(note, 'this is the note')
-  // }, [note])
-
-  const messagesEndRef = useRef(null)
+  useEffect(() => {
+    if (note) {
+      let added = note.hep_update.filter(hep => hep.status === 'added');
+      setAddedHEP(added)
+      let removed = note.hep_update.filter(hep => hep.status === 'removed');
+      setRemovedHEP(removed)
+      console.log (added, removed, 'added, removed')
+    }
+  }, [note])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -56,57 +64,28 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
           <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
         </div>
       </div>
-      {
-      console.log(note, 'this is the note')
-    }
 
       <div className= 'individual-note-therapist-note'>
-        <div className= 'individual-note-subjective-container'>
-          <div className= 'individual-note-therapist-profile-pic-container'>
-            <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
-          </div>
-
-          <p className= 'individual-note-receive-message'>
-            {note.subjective}
-          </p>
-
-        </div>
-
-        <div className= 'individual-note-objective-treatment-container'>
-          Objective
-        </div>
-
-        <div className= 'individual-note-assessment-container'>
-          <div className= 'individual-note-therapist-profile-pic-container'>
-            <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
-          </div>
-
-          <p className= 'individual-note-receive-message'>
-            {note.assessment}
-          </p>
-
-        </div>
+        <div>Subjective</div>
+        <TherapistNoteForPatient therapistText= {note.subjective} />
+        <div>Objective</div>
+        <TherapistNoteForPatient therapistText= {note.objective} />
+        <div>Assessment</div>
+        <TherapistNoteForPatient therapistText= {note.assessment} />
 
         <div className= 'individual-note-hep-update-container'>
           HEP Update
-          {note && note.hep_update.length &&
-            note.hep_update.map((hep) => {
-              if (hep.status === 'added') {
-                return (
-                  <HEPCard hep= {hep}/>
-                )
-              }
-            })
+          {addedHEP.length ?
+            <HEPCard hep= {addedHEP}/> : null
           }
-
-          {note && note.hep_update.length &&
-            note.hep_update.map((hep) => {
-              if (hep.status === 'removed') {
-                return (
-                  <HEPCard hep= {hep} />
-                )
-              }
-            })
+          <div> ------------- </div>
+          <div> ------------- </div>
+          <div> ------------- </div>
+          <div> ------------- </div>
+          <div> ------------- </div>
+          <div> ------------- </div>
+          {removedHEP.length ?
+            <HEPCard hep= {removedHEP} /> : null
           }
         </div>
 

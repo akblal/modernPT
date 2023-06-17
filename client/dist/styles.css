@@ -1033,6 +1033,11 @@ p:after {
   border: 1px #f7b33f solid;
 }
 
+.chat-box-icons-row-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .chat-box-icons-container {
   padding-bottom: 7px;
   margin-left: 10px;
@@ -1048,9 +1053,30 @@ p:after {
 .patient-chat-hep-update {
   display: flex;
   flex-direction: row;
+  position: relative;
+  padding-left: 100px;
 }
 
-/* .patient-chat-hep-update-exercise-info-container, */
+.carousel-left-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: -3px;
+  font-size: 45px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.carousel-right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 670px;
+  font-size: 45px;
+  z-index: 1;
+  cursor: pointer;
+}
+
 .patient-chat-hep-update-container  {
   height: 400px;
   display: flex;
@@ -1078,8 +1104,21 @@ p:after {
 }
 
 .patient-chat-hep-update-exercise-info-container {
-  /* width: 500px; */
+  width: inherit;
   border: 1px solid green;
   flex-direction: column;
   align-items: center;
+}
+
+.patient-chat-hep-update-exercise-name {
+  display: flex;
+  justify-content: center;
+}
+
+.hep-added {
+  background-color: rgb(92, 151, 92);
+}
+
+.hep-removed {
+  background-color: rgb(153, 95, 95);
 }
