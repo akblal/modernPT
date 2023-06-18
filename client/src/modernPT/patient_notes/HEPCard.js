@@ -24,7 +24,10 @@ const HEPCard = ({ hep }) => {
   return (
     <div className= 'patient-chat-hep-update'>
       <div className= 'patient-hep-carousel-container'>
-      {hep.length > 1 && <ImArrowLeft2 className= {'carousel-left-arrow'} onClick= {goPrevious} />}
+      {hep.length > 1 &&
+        <div className= 'carousel-arrow-container'>
+          <ImArrowLeft2 className= {'carousel-left-arrow'} onClick= {goPrevious} />
+          </div>}
       {hep.length ?
         <div className= {hep[currentIndex].status === 'added' ? 'patient-chat-hep-update-container hep-added' : 'patient-chat-hep-update-container hep-removed'}>
           <div className= 'patient-chat-hep-update-video-container'>
@@ -34,12 +37,12 @@ const HEPCard = ({ hep }) => {
           <div className= 'patient-chat-hep-update-exercise-info-container'>
             {hep[currentIndex].status === 'added' &&
               <div className= 'patient-chat-hep-update-exercise-name'>
-                <div>{hep[currentIndex].name} added</div>
+                <div>{hep[currentIndex].name}</div>
               </div>
             }
             {hep[currentIndex].status === 'removed' &&
             <div className= 'patient-chat-hep-update-exercise-name'>
-                <div>{hep[currentIndex].name} removed</div>
+                <div>{hep[currentIndex].name}</div>
               </div>
             }
 
@@ -51,7 +54,10 @@ const HEPCard = ({ hep }) => {
         </div>:
         null
       }
-      {hep.length > 1 && <ImArrowRight2 className= {'carousel-right-arrow'} onClick= {goNext} />}
+      {hep.length > 1 &&
+        <div className= 'carousel-arrow-container'>
+          <ImArrowRight2 className= {'carousel-right-arrow'} onClick= {goNext} />
+        </div>}
       </div>
 
       {hep.length ?
