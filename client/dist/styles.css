@@ -1063,6 +1063,7 @@ p:after {
   border-radius: 50%;
   display: flex;
   padding: 5px 5px;
+  border: 3px solid #4c5fee;
 }
 
 .carousel-left-arrow,
@@ -1082,7 +1083,7 @@ p:after {
 } */
 
 .carousel-arrow-container:active{
-  box-shadow: 0 0 2px;
+  box-shadow: 0 0 1px;
   transform: translateY(2px);
 }
 
