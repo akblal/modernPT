@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
+import TherapistNoteHeader from './TherapistNoteHeader.js'
 import TherapistNoteForPatient from './TherapistNoteForPatient.jsx'
 import HEPCard from './HEPCard.js'
+import UpdatedHEP from './UpdatedHEP.js'
+
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineCancel } from "react-icons/md";
 
@@ -53,38 +56,27 @@ const IndividualNote = ({ note, chatLog, setChatLog, option, setEditChat, editCh
   }
   return (
     <div className= 'individual-note-container'>
-      <div className= 'individual-note-header'>
-        <div className= 'individual-note-visit-information-container'>
-          <div>Therapist's Name:{note.therapist_name} </div>
-          <div>Visit Number: {note.id}, Date Time</div>
-          <div>Reason for Visit:</div>
-        </div>
-        <div className= 'therapist-patient-pic-container'>
-          <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
-          <img className= 'individual-note-therapist-picture-container' src={require('../../images/therapist_profile_pic/brandon_hsu.png')} alt= 'therapist_profile_pic' />
-        </div>
-      </div>
+
+      <TherapistNoteHeader note= {note}/>
 
       <div className= 'individual-note-therapist-note'>
-        <div>Subjective</div>
         <TherapistNoteForPatient therapistText= {note.subjective} />
-        <div>Objective</div>
         <TherapistNoteForPatient therapistText= {note.objective} />
-        <div>Assessment</div>
         <TherapistNoteForPatient therapistText= {note.assessment} />
 
         <div className= 'individual-note-hep-update-container'>
-          HEP Update
           {addedHEP.length ?
-            /* <HEPCard hep= {addedHEP}/> : null */
-            <TherapistNoteForPatient therapistText= {<HEPCard hep= {addedHEP}/>} />: null
+            <TherapistNoteForPatient therapistText= {<HEPCard hep= {addedHEP}/>} />
+            : null
           }
 
           {removedHEP.length ?
-            /* <HEPCard hep= {removedHEP} /> : null */
-            <TherapistNoteForPatient therapistText= {<HEPCard hep= {removedHEP}/>} />: null
+            <TherapistNoteForPatient therapistText= {<HEPCard hep= {removedHEP}/>} />
+            : null
           }
         </div>
+
+        <TherapistNoteForPatient therapistText= {<UpdatedHEP />} />
       </div>
 
       <div className= 'individual-note-chat-container'>

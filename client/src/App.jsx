@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const container = document.getElementById('root');
@@ -10,7 +10,8 @@ import HomePage from './modernPT/HomePage.jsx'
 import SignIn from './modernPT/login/SignIn.js'
 import SignUp from './modernPT/login/SignUp.js'
 import PatientNotes from './modernPT/patient_notes/PatientNotes.jsx'
-
+import Header from './modernPT/Header.js'
+import HEP from './modernPT/HEP.jsx'
 
 function App() {
   const [email, setEmail] = useState('');
@@ -28,19 +29,21 @@ function App() {
   }
   return (
     <div className= 'app-container'>
-      <div className= 'clinic-logo-container'>
-        <div className= 'clinic-logo'>
-          <div className= 'clinic-logo-word'>
-            PT
-          </div>
-        </div>
-      </div>
+      <Routes>
+        <Route index element= {<PatientNotes />}></Route>
+        <Route path= '/HEP' element= {<HEP />}></Route>
+      </Routes>
+      {/* <Header /> */}
       {/* <SignUp getEmail= {getEmail}/> */}
       {/* <SignIn getEmail= {getEmail}/> */}
-      <PatientNotes />
+      {/* <PatientNotes /> */}
     </div>
   );
 }
 
-root.render(<App />)
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+)
 

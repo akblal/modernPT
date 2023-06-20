@@ -113,6 +113,7 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "muscle": "biceps",
       "reps": 12,
       "sets": 3,
+      "hold": "",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
       "status": "added"
@@ -122,6 +123,7 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "muscle": "quads",
       "reps": 12,
       "sets": 3,
+      "hold": "",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
       "status": "added"
@@ -131,6 +133,7 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "muscle": "glutes",
       "reps": 12,
       "sets": 3,
+      "hold": "30 seconds",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
       "status": "added"
@@ -167,10 +170,30 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "muscle": "biceps",
       "reps": 12,
       "sets": 3,
+      "hold": "",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
       "status": "removed"
-
+    },
+    {
+      "name": "Leg Press",
+      "muscle": "quads",
+      "reps": 12,
+      "sets": 3,
+      "hold": "",
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "status": "added"
+    },
+    {
+      "name": "Captain Morgan",
+      "muscle": "glutes",
+      "reps": 12,
+      "sets": 3,
+      "hold": "10 sec",
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "status": "added"
     }]');
 
 

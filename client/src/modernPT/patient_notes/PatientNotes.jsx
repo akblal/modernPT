@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from '../Header.js'
 import AppointmentList from './AppointmentList.jsx';
 import Pagination from '../Pagination.jsx';
 import IndividualNote from './IndividualNote.jsx'
@@ -58,19 +59,23 @@ const PatientNotes = () => {
   }
 
   return (
-    <div className= 'patient-notes-page-container'>
-      <div className= 'patient-notes-appointment-log-container'>
-        <AppointmentList indexFirstNote= {indexFirstNote} setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage} setOption={setOption} setMessage= {setMessage} setEditChat= {setEditChat}/>
-        <div className= 'appointment-log-pagination'>
-          <Pagination notesPerPage= {notesPerPage} totalNotes= {patientNotes.length} paginate= {paginate} currentPage= {currentPage}/>
+    <div className= 'app=container'>
+      <Header />
+      <div className= 'patient-notes-page-container'>
+        <div className= 'patient-notes-appointment-log-container'>
+          <AppointmentList indexFirstNote= {indexFirstNote} setNote= {setNote} currentNotes= {currentNotes} totalNotes= {patientNotes.length} currentPage= {currentPage} notesPerPage= {notesPerPage} setOption={setOption} setMessage= {setMessage} setEditChat= {setEditChat}/>
+          <div className= 'appointment-log-pagination'>
+            <Pagination notesPerPage= {notesPerPage} totalNotes= {patientNotes.length} paginate= {paginate} currentPage= {currentPage}/>
+          </div>
+        </div>
+
+        <div className= 'patient-notes-chat-container'>
+          <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog} option= {option} setEditChat= {setEditChat} editChat= {editChat}/>
+          <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} setNote={setNote} option= {option} setOption= {setOption} editChat= {editChat} setEditChat= {setEditChat} message= {message} setMessage= {setMessage}/>
         </div>
       </div>
-
-      <div className= 'patient-notes-chat-container'>
-        <IndividualNote note= {note} chatLog= {chatLog} setChatLog= {setChatLog} option= {option} setEditChat= {setEditChat} editChat= {editChat}/>
-        <ChatBar chatLog= {chatLog} setChatLog= {setChatLog} note= {note} setNote={setNote} option= {option} setOption= {setOption} editChat= {editChat} setEditChat= {setEditChat} message= {message} setMessage= {setMessage}/>
-      </div>
     </div>
+
   )
 }
 

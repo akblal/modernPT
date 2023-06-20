@@ -27,8 +27,16 @@ const HEPCard = ({ hep }) => {
       {hep.length > 1 &&
         <div className= 'carousel-arrow-container'>
           <ImArrowLeft2 className= {'carousel-left-arrow'} onClick= {goPrevious} />
-          </div>}
+        </div>
+      }
       {hep.length ?
+      <div className= 'patient-chat-hep-update-bucket'>
+        {hep.length > 1&& hep[currentIndex].status === 'added' && <div>Let's add these exercises!</div>}
+        {hep.length === 1&& hep[currentIndex].status === 'added' && <div>Let's add this exercise!</div>}
+        {hep.length > 1 && hep[currentIndex].status === 'removed' && <div>Let's take away these exercises!</div>}
+        {hep.length === 1 && hep[currentIndex].status === 'removed' && <div>Let's take away this exercise!</div>}
+
+
         <div className= {hep[currentIndex].status === 'added' ? 'patient-chat-hep-update-container hep-added' : 'patient-chat-hep-update-container hep-removed'}>
           <div className= 'patient-chat-hep-update-video-container'>
             {hep[currentIndex].video}
@@ -36,13 +44,13 @@ const HEPCard = ({ hep }) => {
 
           <div className= 'patient-chat-hep-update-exercise-info-container'>
             {hep[currentIndex].status === 'added' &&
-              <div className= 'patient-chat-hep-update-exercise-name'>
-                <div>{hep[currentIndex].name}</div>
+              <div className= 'patient-chat-hep-update-center-text'>
+                {hep[currentIndex].name}
               </div>
             }
             {hep[currentIndex].status === 'removed' &&
-            <div className= 'patient-chat-hep-update-exercise-name'>
-                <div>{hep[currentIndex].name}</div>
+              <div className= 'patient-chat-hep-update-center-text'>
+                {hep[currentIndex].name}
               </div>
             }
 
@@ -50,9 +58,15 @@ const HEPCard = ({ hep }) => {
               <div> Sets: {hep[currentIndex].sets} </div>
               <div> Reps: {hep[currentIndex].reps} </div>
             </div>
+
+            {hep[currentIndex].hold &&
+                <div className= 'patient-chat-hep-update-center-text'> Hold: {hep[currentIndex].hold} </div>
+            }
           </div>
-        </div>:
+        </div>
+      </div>:
         null
+
       }
       {hep.length > 1 &&
         <div className= 'carousel-arrow-container'>
