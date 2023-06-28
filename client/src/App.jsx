@@ -11,7 +11,7 @@ import SignIn from './modernPT/login/SignIn.js'
 import SignUp from './modernPT/login/SignUp.js'
 import PatientNotes from './modernPT/patient_notes/PatientNotes.jsx'
 import Header from './modernPT/Header.js'
-import HEP from './modernPT/HEP.jsx'
+import HEPPage from './modernPT/HEP/HEPPage.jsx'
 
 function App() {
   const [email, setEmail] = useState('');
@@ -31,7 +31,8 @@ function App() {
     <div className= 'app-container'>
       <Routes>
         <Route index element= {<PatientNotes />}></Route>
-        <Route path= '/HEP' element= {<HEP />}></Route>
+        <Route path= '/home' element= {<HomePage />}></Route>
+        <Route path= '/HEP' element= {<HEPPage />}></Route>
       </Routes>
       {/* <Header /> */}
       {/* <SignUp getEmail= {getEmail}/> */}

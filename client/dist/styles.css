@@ -523,15 +523,14 @@
   background-color: white;
 }
 
+.hep-page-container,
 .patient-notes-page-container {
   margin-left: 50px;
   margin-right: 100px;
   display: flex;
   flex-direction: row;
   max-width: 1950px;
-  /* min-height: 1000px; */
   width: 100%;
-  /* padding-bottom: 100px; */
 }
 
 .appointment-log-pagination {
@@ -540,6 +539,7 @@
   align-items: center;
 }
 
+.hep-calendar-container,
 .patient-notes-appointment-log-container{
   display: flex;
   width: 775px;
@@ -550,6 +550,7 @@
   min-width: 800px;
 }
 
+.hep-adherence-container,
 .patient-notes-chat-container {
   flex: 1;
   flex-direction: column;
@@ -1150,4 +1151,19 @@ p:after {
   cursor: pointer;
   font-size: 50px;
   color: #4c5fee;
+}
+
+.hep-page-calendar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.css-hlj6pa-MuiDialogActions-root {
+  display: none !important;
+}
+
+.MuiButtonBase-root .MuiPickersDay-root .MuiPickersDay-dayWithMargin .css-qa7bje-MuiButtonBase-root-MuiPickersDay-root{
+  font-size: 40px;
 }

@@ -1,7 +1,10 @@
  DROP TABLE IF EXISTS patient_note CASCADE;
+
 -- DROP TABLE IF EXISTS patient CASCADE;
 -- DROP TABLE IF EXISTS therapist CASCADE;
 DROP TABLE IF EXISTS chat_with_therapist CASCADE;
+DROP TABLE IF EXISTS hep CASCADE;
+
 
 
 -- CREATE TABLE patient (
@@ -26,7 +29,7 @@ CREATE TABLE patient_note (
   objective TEXT NOT NULL,
   assessment TEXT NOT NULL,
   treatment_provided TEXT NOT NULL,
-  hep_update json,
+  hep_update json NOT NULL,
   billing TEXT NOT NULL,
   patient_id INT NOT NULL,
   therapist_id INT NOT NULL,
@@ -55,6 +58,15 @@ CREATE TABLE chat_with_therapist(
     FOREIGN KEY (therapist_id)
       REFERENCES therapist(id)
 );
+
+CREATE TABLE hep (
+  hep_id  SERIAL PRIMARY KEY,
+  patient_id INT NOT NULL,
+  date TEXT NOT NULL,
+  exercises json NOT NULL
+);
+
+
 
 -- INSERT INTO patient (patient_name, birthdate, referringPhysician, diagnosis, email) VALUES ('Sandy Hsu', '4/20/1991', 'Dr. Bob', 'Left hip pain', 'brandon@gmail.com');
 -- INSERT INTO patient (patient_name, birthdate, referringPhysician, diagnosis, email) VALUES ('Joanie Hsu', '3/22/1991', 'Dr. Joe', 'Right knee pain', 'joanie@gmail.com');
@@ -116,7 +128,8 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "hold": "",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
-      "status": "added"
+      "status": "added",
+      "date": "2023-02-01"
     },
     {
       "name": "Leg Press",
@@ -126,7 +139,8 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "hold": "",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
-      "status": "added"
+      "status": "added",
+      "date": "2023-02-01"
     },
     {
       "name": "Captain Morgan",
@@ -136,7 +150,8 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "hold": "30 seconds",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
-      "status": "added"
+      "status": "added",
+      "date": "2023-02-01"
     }]'
   );
   INSERT INTO patient_note (subjective, objective, assessment, treatment_provided, billing, patient_id, therapist_id, appointment_type, chat_selection_type, hep_update) VALUES ( 'this is the subjective2', 'this is the objective2', 'this is the assessment2', 'this is the treatment provided2', 'this is the billing2', 1, 2, 'Flareup', '[
@@ -173,7 +188,8 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "hold": "",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
-      "status": "removed"
+      "status": "removed",
+      "date": "2023-12-01"
     },
     {
       "name": "Leg Press",
@@ -183,7 +199,8 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "hold": "",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
-      "status": "added"
+      "status": "added",
+      "date": "2023-12-01"
     },
     {
       "name": "Captain Morgan",
@@ -193,11 +210,50 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "hold": "10 sec",
       "video": "video",
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
-      "status": "added"
+      "status": "added",
+      "date": "2023-12-01"
     }]');
 
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-08',
+'
+  [{
+      "name": "Incline Hammer Curls",
+      "muscle": "biceps",
+      "reps": 12,
+      "sets": 3,
+      "hold": "",
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position."
+    },
+    {
+      "name": "Leg Press",
+      "muscle": "quads",
+      "reps": 12,
+      "sets": 3,
+      "hold": "",
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position."
+    },
+    {
+      "name": "Captain Morgan",
+      "muscle": "glutes",
+      "reps": 12,
+      "sets": 3,
+      "hold": "10 sec",
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position."
+    }
 
+  ]'
+);
 
+INSERT INTO hep (patient_id, date, exercises) VALUES (2, '2023-08-23',
+'[
+  {
+    "name": "incline bench press"
+  }
+  ]'
+);
 
 -- INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id) VALUES ('testing', 1, 1);
 

@@ -77,5 +77,16 @@ module.exports = {
         resolve(result)
       })
     })
+  },
+  getHEP(id){
+    return new Promise((resolve, reject) => {
+      const queryStatement = `SELECT hep_update FROM patient_note WHERE patient_id = ${id};`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject(err)
+        }
+        resolve(result)
+      })
+    })
   }
 }

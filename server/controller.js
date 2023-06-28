@@ -26,6 +26,17 @@ module.exports = {
     })
     .catch((err) => console.log(err, 'in controller--> get last message'))
   },
+  getHEP(req, res) {
+    const patientID = req.params.id;
+    model.getHEP(patientID)
+    .then((result) => {
+      res.status(200)
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log('in controller--> getHEP')
+    })
+  },
   saveChat(req, res) {
     const data = req.body;
     // console.log (data, 'in controller')
