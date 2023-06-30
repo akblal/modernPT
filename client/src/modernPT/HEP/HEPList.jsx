@@ -3,21 +3,9 @@ import axios from 'axios'
 
 const HEPList = ({ selectedDate }) => {
 
-  // const [selectedDate, setSelectedDate] = useState('');
   const [hep, setHEP] = useState([]);
   const [before, setBefore] = useState(false);
   const evalDate = '2023-01-01'
-
-
-  // const getAnotherHEP = async() => {
-  //   let data = await axios.get('/getAnotherHEP', {
-  //     params: {
-  //       date: selectedDate,
-  //       patient_id: 1
-  //     }
-  //   })
-  //   return data
-  // }
 
   const getDayHEP = async() => {
     let dayHEP = await axios.get('/getDayHEP', {
@@ -34,7 +22,7 @@ const HEPList = ({ selectedDate }) => {
       //if selected date is earlier than the eval date,
       //return that there is no HEP to return
       if (selectedDate < evalDate) {
-        console.log ('date selected is before eval date')
+        //console.log ('date selected is before eval date')
         setHEP([])
         setBefore(true)
         return
@@ -42,7 +30,7 @@ const HEPList = ({ selectedDate }) => {
       //if selected date is the late of the most recent HEP update for the patient,
       // or a date after, return the most recent HEP
       if (selectedDate >= recentDateHEP ) {
-        console.log('most recent HEP will be listed')
+        //console.log('most recent HEP will be listed')
         let tempHEP = dayHEP.data.rows[0].exercises;
         setHEP(tempHEP)
         setBefore(false)
@@ -52,7 +40,7 @@ const HEPList = ({ selectedDate }) => {
       //--> search DB for latest HEP entry on the selected date or prior to the selected date
       if (selectedDate < recentDateHEP && selectedDate > evalDate) {
         try {
-          console.log('search for the hep')
+          //console.log('search for the hep')
           setHEP([])
 
           let updatedHEPData = await axios.get('/getAnotherHEP', {
@@ -69,7 +57,6 @@ const HEPList = ({ selectedDate }) => {
         } catch (err){
           console.log(err, 'err in get another hep')
         }
-
       }
     }
 
@@ -88,7 +75,6 @@ const HEPList = ({ selectedDate }) => {
           return (
             <h1 key= {index}> {exerise.name}</h1>
           )
-
         })
       }
       {before && <h1>NO hep to display!</h1>}
