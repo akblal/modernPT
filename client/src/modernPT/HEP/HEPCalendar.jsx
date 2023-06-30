@@ -8,7 +8,6 @@ import dayjs from 'dayjs';
 const HEPCalendar = ({ date, setDate, setStringDate }) => {
 
   useEffect (() => {
-
     const string = date.toString();
     setDate(string)
 
@@ -71,7 +70,6 @@ const HEPCalendar = ({ date, setDate, setStringDate }) => {
           }}
         />
       </LocalizationProvider>
-
     </div>
   )
 }
