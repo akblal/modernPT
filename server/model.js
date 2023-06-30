@@ -88,5 +88,27 @@ module.exports = {
         resolve(result)
       })
     })
-  }
+  },
+  getDayHEP(data) {
+    return new Promise ((resolve, reject) => {
+      const queryStatement = `SELECT * FROM hep WHERE patient_id = ${data.patient_id} ORDER BY hep_id DESC LIMIT 1;`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject (err)
+        }
+        resolve(result)
+      })
+    })
+  },
+  getAnotherHEP(data) {
+    return new Promise ((resolve, reject) => {
+      const queryStatement = `SELECT * FROM hep WHERE patient_id = ${data.patient_id} AND date <= '${data.date}' ORDER BY hep_id DESC LIMIT 1;`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject (err)
+        }
+        resolve(result)
+      })
+    })
+  },
 }

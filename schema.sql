@@ -214,7 +214,7 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "date": "2023-12-01"
     }]');
 
-INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-08',
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-06-30',
 '
   [{
       "name": "Incline Hammer Curls",
@@ -247,13 +247,42 @@ INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-08',
   ]'
 );
 
-INSERT INTO hep (patient_id, date, exercises) VALUES (2, '2023-08-23',
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-07-01',
 '[
   {
-    "name": "incline bench press"
+    "name": "leg press"
   }
   ]'
 );
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-07-06',
+'[
+  {
+    "name": "tricep push down"
+  }
+  ]'
+);
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-23',
+'[
+  {
+    "name": "RFESS"
+  }
+  ]'
+);
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-25',
+'[
+  {
+    "name": "hot plate"
+  }
+  ]'
+);
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-26',
+'[
+  {
+    "name": "shoulder press"
+  }
+  ]'
+);
+
 
 -- INSERT INTO chat_with_therapist (chat_message, patient_id, therapist_id) VALUES ('testing', 1, 1);
 

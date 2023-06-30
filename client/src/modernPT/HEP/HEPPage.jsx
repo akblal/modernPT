@@ -3,8 +3,7 @@ import axios from 'axios'
 
 import Header from '../Header.js'
 import HEPCalendar from './HEPCalendar.jsx'
-
-
+import HEPList from './HEPList.jsx'
 
 const HEPPage = () => {
   //filter throught patient_note schema --> hep_update --> status === "added"
@@ -15,6 +14,7 @@ const HEPPage = () => {
   //add hep column to patient table which has the accumulation of HEP per patient
 
   const [date, setDate] = useState(new Date());
+  const [stringDate, setStringDate] = useState('');
 
   const getHEP = async() => {
     try {
@@ -28,19 +28,19 @@ const HEPPage = () => {
 
   useEffect(() =>{
     getHEP()
+    //console.log(date, 'this is the date',  typeof date)
   }, [date])
 
   return (
     <div className= 'app-container'>
-
       <Header />
       <div className= 'hep-page-container'>
         <div className= 'hep-calendar-container'>
-          <HEPCalendar date= {date} setDate= {setDate}/>
+          <HEPCalendar date= {date} setDate= {setDate} setStringDate= {setStringDate}/>
         </div>
 
         <div className= 'hep-adherence-container'>
-          Right Side
+          <HEPList selectedDate= {stringDate} />
         </div>
       </div>
     </div>

@@ -33,17 +33,13 @@ module.exports = {
       res.status(200)
       res.send(result)
     })
-    .catch((err) => {
-      console.log('in controller--> getHEP')
-    })
+    .catch((err) =>  console.log('in controller--> getHEP'))
   },
   saveChat(req, res) {
     const data = req.body;
-    // console.log (data, 'in controller')
     model.saveChat(data)
     .then((result) => {
       res.status(201)
-      // console.log(result, 'result in controller')
       res.send(result)
     })
     .catch((err) => console.log(err, 'in controller--> save chat'))
@@ -52,14 +48,12 @@ module.exports = {
     const noteID = req.params.id;
     model.getChatHistory(noteID)
     .then((result) => {
-      // console.log(result, ' in controller hello')
       res.send(result)
       res.status(201)
     })
     .catch((err) => console.log (err, 'in controller --> get Chat history'))
   },
   editChat(req, res) {
-    // console.log(req.body)
     const data = req.body;
     model.editChat(data)
     .then((result) => {
@@ -76,5 +70,23 @@ module.exports = {
       res.status(201)
     })
     .catch((err) => console.log(err, 'in controller --> reduce options'))
-  }
+  },
+  getDayHEP(req, res) {
+    const data = req.query;
+    model.getDayHEP(data)
+    .then((result) => {
+      res.send(result)
+      res.status(201)
+    })
+    .catch((err) => console.log(err, 'in controller --> getDayHEP'))
+  },
+  getAnotherHEP(req, res) {
+    const data = req.query;
+    model.getAnotherHEP(data)
+    .then((result) => {
+      res.send(result)
+      res.status(201)
+    })
+    .catch((err) => console.log(err, 'in controller --> get Another HEP'))
+  },
 }
