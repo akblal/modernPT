@@ -10,18 +10,18 @@ const HEPPage = () => {
   const [date, setDate] = useState(new Date());
   const [stringDate, setStringDate] = useState('');
 
-  const getHEP = async() => {
-    try {
-      const data = await axios.get(`/getHEP/${1}`)
-    }
-    catch(err) {
-      console.log(err, 'err in HEPPage getHEP request')
-    }
-  }
+  // const getHEP = async() => {
+  //   try {
+  //     const data = await axios.get(`/getHEP/${1}`)
+  //   }
+  //   catch(err) {
+  //     console.log(err, 'err in HEPPage getHEP request')
+  //   }
+  // }
 
-  useEffect(() =>{
-    getHEP()
-  }, [date])
+  // useEffect(() =>{
+  //   getHEP()
+  // }, [date])
 
   return (
     <div className= 'app-container'>

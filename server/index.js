@@ -16,7 +16,7 @@ app.get(`/user/:address`, controller.user)
 app.get('/getPatientNotes/:id', controller.getPatientNotes)
 app.get('/getLastMessage/:message_id', controller.getLastMessage)
 app.get('/getChatHistory/:id', controller.getChatHistory)
-app.get('/getHEP/:id', controller.getHEP)
+// app.get('/getHEP/:id', controller.getHEP)
 app.get('/getDayHEP', controller.getDayHEP)
 app.get('/getAnotherHEP', controller.getAnotherHEP)
 

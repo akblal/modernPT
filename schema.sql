@@ -63,7 +63,8 @@ CREATE TABLE hep (
   hep_id  SERIAL PRIMARY KEY,
   patient_id INT NOT NULL,
   date TEXT NOT NULL,
-  exercises json NOT NULL
+  exercises json NOT NULL,
+  completed boolean NOT NULL
 );
 
 
@@ -214,7 +215,7 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "date": "2023-12-01"
     }]');
 
-INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-06-30',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-06-30',
 '
   [{
       "name": "Incline Hammer Curls",
@@ -244,43 +245,49 @@ INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-06-30',
       "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position."
     }
 
-  ]'
+  ]',
+  false
 );
 
-INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-07-01',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-01',
 '[
   {
     "name": "leg press"
   }
-  ]'
+  ]',
+  false
 );
-INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-07-06',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-06',
 '[
   {
     "name": "tricep push down"
   }
-  ]'
+  ]',
+  false
 );
-INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-23',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-08-23',
 '[
   {
     "name": "RFESS"
   }
-  ]'
+  ]',
+  false
 );
-INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-25',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-08-25',
 '[
   {
     "name": "hot plate"
   }
-  ]'
+  ]',
+  false
 );
-INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-08-26',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-08-26',
 '[
   {
     "name": "shoulder press"
   }
-  ]'
+  ]',
+  false
 );
 
 
