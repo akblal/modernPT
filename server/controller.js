@@ -26,15 +26,6 @@ module.exports = {
     })
     .catch((err) => console.log(err, 'in controller--> get last message'))
   },
-  // getHEP(req, res) {
-  //   const patientID = req.params.id;
-  //   model.getHEP(patientID)
-  //   .then((result) => {
-  //     res.status(200)
-  //     res.send(result)
-  //   })
-  //   .catch((err) =>  console.log('in controller--> getHEP'))
-  // },
   saveChat(req, res) {
     const data = req.body;
     model.saveChat(data)
@@ -71,22 +62,31 @@ module.exports = {
     })
     .catch((err) => console.log(err, 'in controller --> reduce options'))
   },
-  getDayHEP(req, res) {
+  getLatestHEP(req, res) {
     const data = req.query;
-    model.getDayHEP(data)
+    model.getLatestHEP(data)
     .then((result) => {
       res.send(result)
       res.status(201)
     })
-    .catch((err) => console.log(err, 'in controller --> getDayHEP'))
+    .catch((err) => console.log(err, 'in controller --> getLatestHEP'))
   },
-  getAnotherHEP(req, res) {
+  getLatestHEPBeforeDate(req, res) {
     const data = req.query;
-    model.getAnotherHEP(data)
+    model.getLatestHEPBeforeDate(data)
     .then((result) => {
       res.send(result)
       res.status(201)
     })
-    .catch((err) => console.log(err, 'in controller --> get Another HEP'))
+    .catch((err) => console.log(err, 'in controller --> get latrest HEP before selected date'))
   },
+  getHEPOnSelectedDate(req,res) {
+    const data = req.query;
+    model.getHEPOnSelectedDate(data)
+    .then((results) => {
+      res.send(results)
+      res.status(201)
+    })
+    .catch((err) => console.log(err, 'in controller --> get HEP on selected date'))
+  }
 }

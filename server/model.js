@@ -78,20 +78,9 @@ module.exports = {
       })
     })
   },
-  // getHEP(id){
-  //   return new Promise((resolve, reject) => {
-  //     const queryStatement = `SELECT hep_update FROM patient_note WHERE patient_id = ${id};`
-  //     pool.query(queryStatement, (err, result) => {
-  //       if (err) {
-  //         return reject(err)
-  //       }
-  //       resolve(result)
-  //     })
-  //   })
-  // },
-  getDayHEP(data) {
+  getLatestHEP(data) {
     return new Promise ((resolve, reject) => {
-      const queryStatement = `SELECT * FROM hep WHERE patient_id = ${data.patient_id} ORDER BY hep_id DESC LIMIT 1;`
+      const queryStatement = `SELECT * FROM hep WHERE patient_id = ${data.patient_id} ORDER BY date DESC LIMIT 1;`
       pool.query(queryStatement, (err, result) => {
         if (err) {
           return reject (err)
@@ -100,7 +89,7 @@ module.exports = {
       })
     })
   },
-  getAnotherHEP(data) {
+  getLatestHEPBeforeDate(data) {
     return new Promise ((resolve, reject) => {
       const queryStatement = `SELECT * FROM hep WHERE patient_id = ${data.patient_id} AND date <= '${data.date}' ORDER BY hep_id DESC LIMIT 1;`
       pool.query(queryStatement, (err, result) => {
@@ -111,4 +100,15 @@ module.exports = {
       })
     })
   },
+  getHEPOnSelectedDate(data) {
+    return new Promise((resolve, reject) => {
+      const queryStatement= `SELECT exercises from hep WHERE date = '${data.date}';`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject(err)
+        }
+        resolve(result.rows)
+      })
+    })
+  }
 }

@@ -8,9 +8,9 @@ const HEPList = ({ selectedDate }) => {
   const [before, setBefore] = useState(false);
   const evalDate = '2023-01-01'
 
-  const getDayHEP = async() => {
+  const getLatestHEP = async() => {
     try {
-      let dayHEP = await axios.get('/getDayHEP', {
+      let dayHEP = await axios.get('/getLatestHEP', {
         params: {
           date: selectedDate,
           patient_id: 1
@@ -41,11 +41,29 @@ const HEPList = ({ selectedDate }) => {
         //if selected date is later than eval date AND less than the latest date of the updated HEP
         //--> search DB for latest HEP entry on the selected date or prior to the selected date
         if (selectedDate < recentDateHEP && selectedDate > evalDate) {
+
+          /*
+            getHEPOnSelectedDate = axios.get...
+            if (getHEPOnSelectedDate returns a valid HEP)
+              set the hep to getHEPOnSelectedDate
+            else
+              updatedHEPData....
+              insert HEP into DB
+          */
+
           try {
             //console.log('search for the hep')
             setHEP([])
 
-            let updatedHEPData = await axios.get('/getAnotherHEP', {
+            let selectDayHEPData = await axios.get('/getHEPOnSelectedDate', {
+              params: {
+                date: selectedDate,
+              }
+            })
+            let selectedDayHEP = selectDayHEPData.data;
+            console.log(selectedDayHEP, 'selectedDayHEP')
+
+            let updatedHEPData = await axios.get('/getLatestHEPBeforeDate', {
               params: {
                 date: selectedDate,
                 patient_id: 1
@@ -65,13 +83,13 @@ const HEPList = ({ selectedDate }) => {
 
       // console.log (dayHEP, 'these are the results from getHEP')
     } catch (err) {
-      console.log('err in getDayHEP')
+      console.log('err in getLatestHEP')
     }
 
   }
 
   useEffect(() => {
-    getDayHEP();
+    getLatestHEP();
   }, [selectedDate])
 
   return (

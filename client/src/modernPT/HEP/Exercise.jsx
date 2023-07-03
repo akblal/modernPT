@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 const Exercise = ({ exercise }) => {
 
-  // const [counter, setCounter] = useState(0)
   const [completed, setCompleted] = useState(false)
 
   const handleComplete = (e) => {
