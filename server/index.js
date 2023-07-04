@@ -35,6 +35,7 @@ app.get('/getHEPOnSelectedDate', controller.getHEPOnSelectedDate)
 // });
 
 app.post('/saveChat', controller.saveChat)
+app.post('/updateHEPOnSelectedDate', controller.updateHEPOnSelectedDate)
 
 app.put('/editChat', controller.editChat)
 app.put('/reduceOptions', controller.reducedOptions)

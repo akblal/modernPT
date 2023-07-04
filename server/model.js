@@ -110,5 +110,17 @@ module.exports = {
         resolve(result.rows)
       })
     })
+  },
+  updateHEPOnSelectedDate(data) {
+    return new Promise ((resolve, reject) => {
+      const queryStatement= `INSERT INTO hep (patient_id, date, exercises, completed) VALUES (${data.patient_id}, '${data.date}', '${data.exercises}', ${data.completed});`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject(err)
+        }
+        console.log(result, 'in model')
+        resolve(result)
+      })
+    })
   }
 }

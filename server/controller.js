@@ -88,5 +88,16 @@ module.exports = {
       res.status(201)
     })
     .catch((err) => console.log(err, 'in controller --> get HEP on selected date'))
+  },
+  updateHEPOnSelectedDate(req, res) {
+    const data = req.body;
+    console.log(data, ' in updatehep controller')
+    model.updateHEPOnSelectedDate(data)
+    .then((result) => {
+      console.log(result, 'in controller')
+      res.send(result)
+      res.status(201)
+    })
+    .catch((err) => console.log(err, 'in controller --> update HEP'))
   }
 }

@@ -60,19 +60,33 @@ const HEPList = ({ selectedDate }) => {
                 date: selectedDate,
               }
             })
-            let selectedDayHEP = selectDayHEPData.data;
+            let selectedDayHEP = selectDayHEPData.data
             console.log(selectedDayHEP, 'selectedDayHEP')
 
-            let updatedHEPData = await axios.get('/getLatestHEPBeforeDate', {
-              params: {
-                date: selectedDate,
-                patient_id: 1
-              }
-            })
+            if (selectedDayHEP && selectedDayHEP.length) {
+              // console.log('hep already in postgres')
+              console.log(selectedDayHEP[0].exercises, 'hep, already in postgres')
+              setHEP(selectedDayHEP[0].exercises)
+            } else {
+              // console.log('no hep in postgres. need to add it in')
+              let updatedHEPData = await axios.get('/getLatestHEPBeforeDate', {
+                params: {
+                  date: selectedDate,
+                  patient_id: 1
+                }
+              })
+              // console.log(updatedHEPData)
+              let updatedHEP = updatedHEPData.data.rows[0].exercises
+              console.log(updatedHEP, 'hep, need to add into postgres')
+              setHEP(updatedHEP)
 
-            let updatedHEP = updatedHEPData.data.rows[0].exercises
-            console.log(updatedHEP, 'hep')
-            setHEP(updatedHEP)
+              let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
+                patient_id: 1,
+                date: selectedDate,
+                exercises: JSON.stringify(updatedHEP),
+                completed: false
+              })
+            }
             setBefore(false)
             return
           } catch (err){
@@ -80,7 +94,6 @@ const HEPList = ({ selectedDate }) => {
           }
         }
       }
-
       // console.log (dayHEP, 'these are the results from getHEP')
     } catch (err) {
       console.log('err in getLatestHEP')
@@ -94,7 +107,6 @@ const HEPList = ({ selectedDate }) => {
 
   return (
     <div className= 'hep-page-exercise-list-container'>
-      {/* <h1>{selectedDate}</h1> */}
       <h1>number of exercise/{hep.length} completed!</h1>
       {hep && hep[0] &&
         hep.map((exercise, index) => {
