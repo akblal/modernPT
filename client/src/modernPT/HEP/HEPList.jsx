@@ -6,7 +6,7 @@ const HEPList = ({ selectedDate }) => {
 
   const [hep, setHEP] = useState([]);
   const [before, setBefore] = useState(false);
-  const evalDate = '2023-01-01'
+  const evalDate = '2023-06-30'
 
   const getLatestHEP = async() => {
     try {
@@ -40,7 +40,7 @@ const HEPList = ({ selectedDate }) => {
         }
         //if selected date is later than eval date AND less than the latest date of the updated HEP
         //--> search DB for latest HEP entry on the selected date or prior to the selected date
-        if (selectedDate < recentDateHEP && selectedDate > evalDate) {
+        if (selectedDate < recentDateHEP && selectedDate >= evalDate) {
 
           /*
             getHEPOnSelectedDate = axios.get...

@@ -55,11 +55,9 @@ const Exercise = ({ exercise }) => {
           <button onClick= {handleComplete}> Still Need to Do</button> :
           <button onClick= {handleComplete}> Completed!</button>
         }
-
           <button onClick= {handleComment}>Comment</button>
         </div>
       </div>
-
     </div>
   )
 }
