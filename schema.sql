@@ -250,7 +250,7 @@ INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-06-30'
 );
 
 INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-01','[{"name": "leg press"}]',false);
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-06',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-02',
 '[
   {
     "name": "tricep push down"
@@ -258,26 +258,10 @@ INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-06'
   ]',
   false
 );
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-08-23',
+INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-03',
 '[
   {
     "name": "RFESS"
-  }
-  ]',
-  false
-);
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-08-25',
-'[
-  {
-    "name": "hot plate"
-  }
-  ]',
-  false
-);
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-08-26',
-'[
-  {
-    "name": "shoulder press"
   }
   ]',
   false

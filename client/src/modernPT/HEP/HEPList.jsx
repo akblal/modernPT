@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Exercise from './Exercise.jsx'
 
-const HEPList = ({ selectedDate }) => {
+const HEPList = ({ selectedDate, currDate }) => {
 
   const [hep, setHEP] = useState([]);
   const [before, setBefore] = useState(false);
+  const [after, setAfter] = useState(false);
   const evalDate = '2023-06-30'
 
   const getLatestHEP = async() => {
@@ -26,18 +27,32 @@ const HEPList = ({ selectedDate }) => {
           //console.log ('date selected is before eval date')
           setHEP([])
           setBefore(true)
+          setAfter(false)
           return
         }
         //if selected date is the late of the most recent HEP update for the patient,
         // or a date after, return the most recent HEP
-        if (selectedDate >= recentDateHEP ) {
-          //console.log('most recent HEP will be listed')
+        if (selectedDate >= recentDateHEP && selectedDate <= currDate) {
+          // console.log('most recent HEP will be listed')
           let tempHEP = dayHEP.data.rows[0].exercises;
-          console.log(tempHEP, 'hep')
+          // console.log(tempHEP, 'hep')
           setHEP(tempHEP)
           setBefore(false)
+          setAfter(false)
           return
         }
+
+        if (selectedDate > currDate) {
+          //console.log('most recent HEP will be listed')
+          let tempHEP = dayHEP.data.rows[0].exercises;
+          // console.log(tempHEP, 'hep')
+          setHEP(tempHEP)
+          setBefore(false)
+          setAfter(true)
+          console.log('selected date after curr date')
+          return
+        }
+
         //if selected date is later than eval date AND less than the latest date of the updated HEP
         //--> search DB for latest HEP entry on the selected date or prior to the selected date
         if (selectedDate < recentDateHEP && selectedDate >= evalDate) {
@@ -61,11 +76,11 @@ const HEPList = ({ selectedDate }) => {
               }
             })
             let selectedDayHEP = selectDayHEPData.data
-            console.log(selectedDayHEP, 'selectedDayHEP')
+            // console.log(selectedDayHEP, 'selectedDayHEP')
 
             if (selectedDayHEP && selectedDayHEP.length) {
               // console.log('hep already in postgres')
-              console.log(selectedDayHEP[0].exercises, 'hep, already in postgres')
+              // console.log(selectedDayHEP[0].exercises, 'hep, already in postgres')
               setHEP(selectedDayHEP[0].exercises)
             } else {
               // console.log('no hep in postgres. need to add it in')
@@ -77,7 +92,7 @@ const HEPList = ({ selectedDate }) => {
               })
               // console.log(updatedHEPData)
               let updatedHEP = updatedHEPData.data.rows[0].exercises
-              console.log(updatedHEP, 'hep, need to add into postgres')
+              // console.log(updatedHEP, 'hep, need to add into postgres')
               setHEP(updatedHEP)
 
               let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
@@ -88,6 +103,7 @@ const HEPList = ({ selectedDate }) => {
               })
             }
             setBefore(false)
+            setAfter(false)
             return
           } catch (err){
             console.log(err, 'err in get another hep')
