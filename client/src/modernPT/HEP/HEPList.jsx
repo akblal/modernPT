@@ -42,6 +42,9 @@ const HEPList = ({ selectedDate, currDate }) => {
           return
         }
 
+
+        //if the selected date is a future date,
+        //setAfter (which is boolean and determines if date is within present time period)
         if (selectedDate > currDate) {
           //console.log('most recent HEP will be listed')
           let tempHEP = dayHEP.data.rows[0].exercises;
