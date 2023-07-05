@@ -11,6 +11,8 @@ const HEPList = ({ selectedDate, currDate }) => {
 
   const getLatestHEP = async() => {
     try {
+
+      //dsyHEP returns data of the most recently inputted HEP into the hep table
       let dayHEP = await axios.get('/getLatestHEP', {
         params: {
           date: selectedDate,
@@ -30,6 +32,7 @@ const HEPList = ({ selectedDate, currDate }) => {
           setAfter(false)
           return
         }
+
         //if selected date is the late of the most recent HEP update for the patient,
         // or a date after, return the most recent HEP
         if (selectedDate >= recentDateHEP && selectedDate <= currDate) {
@@ -41,7 +44,6 @@ const HEPList = ({ selectedDate, currDate }) => {
           setAfter(false)
           return
         }
-
 
         //if the selected date is a future date,
         //setAfter (which is boolean and determines if date is within present time period)
@@ -59,7 +61,6 @@ const HEPList = ({ selectedDate, currDate }) => {
         //if selected date is later than eval date AND less than the latest date of the updated HEP
         //--> search DB for latest HEP entry on the selected date or prior to the selected date
         if (selectedDate < recentDateHEP && selectedDate >= evalDate) {
-
           /*
             getHEPOnSelectedDate = axios.get...
             if (getHEPOnSelectedDate returns a valid HEP)
