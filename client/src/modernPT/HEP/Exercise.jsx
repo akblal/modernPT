@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Exercise = ({ exercise }) => {
+const Exercise = ({ exercise, after }) => {
 
   const [completed, setCompleted] = useState(false)
 
@@ -51,11 +51,15 @@ const Exercise = ({ exercise }) => {
           {exercise.description}
         </h2>
         <div className= 'hep-page-exercise-scheme-container'>
-        {completed ?
+        {!after ?
+          completed ?
           <button onClick= {handleComplete}> Still Need to Do</button> :
           <button onClick= {handleComplete}> Completed!</button>
+          :
+          null
         }
-          <button onClick= {handleComment}>Comment</button>
+        {!after && <button onClick= {handleComment}>Comment</button>}
+
         </div>
       </div>
     </div>

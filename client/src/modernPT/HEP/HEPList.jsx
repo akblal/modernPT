@@ -131,7 +131,7 @@ const HEPList = ({ selectedDate, currDate }) => {
       {hep && hep[0] &&
         hep.map((exercise, index) => {
           return (
-            <Exercise key= {index} exercise= {exercise}/>
+            <Exercise key= {index} exercise= {exercise} after= {after}/>
           )
         })
       }
