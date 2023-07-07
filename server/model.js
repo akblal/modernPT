@@ -113,12 +113,23 @@ module.exports = {
   },
   updateHEPOnSelectedDate(data) {
     return new Promise ((resolve, reject) => {
-      const queryStatement= `INSERT INTO hep (patient_id, date, exercises, completed) VALUES (${data.patient_id}, '${data.date}', '${data.exercises}', ${data.completed});`
+      const queryStatement= `INSERT INTO hep (patient_id, date, exercises) VALUES (${data.patient_id}, '${data.date}', '${data.exercises}');`
       pool.query(queryStatement, (err, result) => {
         if (err) {
           return reject(err)
         }
-        console.log(result, 'in model')
+        resolve(result)
+      })
+    })
+  },
+  changeExerciseCompletionStatus(data) {
+    return new Promise ((resolve, reject) => {
+      console.log(data.exercises, 'exercises in model')
+      const queryStatement= `UPDATE hep SET exercises = ‘${data.exercises}’ WHERE patient_id = ${data.patient_id} AND date = ‘${data.date}’;`
+      pool.query(queryStatement, (err, result) => {
+        if (err) {
+          return reject(err)
+        }
         resolve(result)
       })
     })

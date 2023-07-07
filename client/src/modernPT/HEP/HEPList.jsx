@@ -38,7 +38,12 @@ const HEPList = ({ selectedDate, currDate }) => {
         if (selectedDate >= recentDateHEP && selectedDate <= currDate) {
           // console.log('most recent HEP will be listed')
           let tempHEP = dayHEP.data.rows[0].exercises;
-          // console.log(tempHEP, 'hep')
+          console.log( 'hello')
+          let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
+            patient_id: 1,
+            date: selectedDate,
+            exercises: JSON.stringify(tempHEP),
+          })
           setHEP(tempHEP)
           setBefore(false)
           setAfter(false)
@@ -96,7 +101,7 @@ const HEPList = ({ selectedDate, currDate }) => {
               })
               // console.log(updatedHEPData)
               let updatedHEP = updatedHEPData.data.rows[0].exercises
-              // console.log(updatedHEP, 'hep, need to add into postgres')
+              console.log(updatedHEP, 'hep, need to add into postgres')
               setHEP(updatedHEP)
 
               let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
@@ -125,13 +130,26 @@ const HEPList = ({ selectedDate, currDate }) => {
     getLatestHEP();
   }, [selectedDate])
 
+  const changeExerciseStatus = async (movement, index) => {
+    console.log(movement, 'movement')
+    console.log(index, 'index in array')
+    console.log(hep, 'this is the total hep')
+    setHEP(hep)
+
+    const revisedHEP = await axios.put('/changeExerciseCompletionStatus', {
+      patient_id: 1,
+      date: selectedDate,
+      exercises: JSON. stringify(hep)
+    })
+  }
+
   return (
     <div className= 'hep-page-exercise-list-container'>
       <h1>number of exercise/{hep.length} completed!</h1>
       {hep && hep[0] &&
         hep.map((exercise, index) => {
           return (
-            <Exercise key= {index} exercise= {exercise} after= {after}/>
+            <Exercise key= {index} exercise= {exercise} after= {after} changeExerciseStatus= {changeExerciseStatus} order= {index}/>
           )
         })
       }

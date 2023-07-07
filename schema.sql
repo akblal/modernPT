@@ -63,8 +63,7 @@ CREATE TABLE hep (
   hep_id  SERIAL PRIMARY KEY,
   patient_id INT NOT NULL,
   date TEXT NOT NULL,
-  exercises json NOT NULL,
-  completed boolean NOT NULL
+  exercises json NOT NULL
 );
 
 
@@ -215,7 +214,7 @@ INSERT INTO patient_note (subjective, objective, assessment, treatment_provided,
       "date": "2023-12-01"
     }]');
 
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-06-30',
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-06-30',
 '
   [{
       "name": "Incline Hammer Curls",
@@ -224,7 +223,8 @@ INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-06-30'
       "sets": 3,
       "hold": "",
       "video": "video",
-      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position."
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "completed": false
     },
     {
       "name": "Leg Press",
@@ -233,7 +233,8 @@ INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-06-30'
       "sets": 3,
       "hold": "",
       "video": "video",
-      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position."
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "completed": false
     },
     {
       "name": "Captain Morgan",
@@ -242,29 +243,49 @@ INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-06-30'
       "sets": 3,
       "hold": "10 sec",
       "video": "video",
-      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position."
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "completed": false
     }
 
-  ]',
-  false
+  ]'
 );
 
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-01','[{"name": "leg press"}]',false);
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-02',
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-07-01','[{
+      "name": "Captain Morgan",
+      "muscle": "glutes",
+      "reps": 12,
+      "sets": 3,
+      "hold": "10 sec",
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "completed": false
+    }
+]');
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-07-02',
 '[
   {
-    "name": "tricep push down"
-  }
-  ]',
-  false
+    "name": "tricep push down",
+    "muscle": "tricep",
+      "reps": 12,
+      "sets": 3,
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "completed": false
+    }
+  ]'
 );
-INSERT INTO hep (patient_id, date, exercises, completed) VALUES (1, '2023-07-03',
+INSERT INTO hep (patient_id, date, exercises) VALUES (1, '2023-07-03',
 '[
   {
-    "name": "RFESS"
-  }
-  ]',
-  false
+    "name": "RFESS",
+    "muscle": "legs",
+      "reps": 12,
+      "sets": 3,
+      "video": "video",
+      "description": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+      "completed": false
+    }
+  ]'
 );
 
 

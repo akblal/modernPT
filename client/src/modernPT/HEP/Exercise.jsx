@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 
-const Exercise = ({ exercise, after }) => {
+const Exercise = ({ order, exercise, after, changeExerciseStatus }) => {
 
   const [completed, setCompleted] = useState(false)
 
   const handleComplete = (e) => {
     e.preventDefault();
-    console.log(exercise.name + ' is completed!')
+    console.log(exercise + ' is completed!')
     if (completed) {
       exercise.completed = false
     } else {
       exercise.completed = true;
     }
-    let temp = !completed
-    setCompleted(temp)
+    let status = !completed
+    setCompleted(status)
+    changeExerciseStatus(exercise, order)
   }
 
   const handleComment = (e) => {

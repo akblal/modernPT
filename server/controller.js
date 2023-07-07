@@ -99,5 +99,14 @@ module.exports = {
       res.status(201)
     })
     .catch((err) => console.log(err, 'in controller --> update HEP'))
+  },
+  changeExerciseCompletionStatus(req, res) {
+    const data = req.body;
+    console.log(data, 'data')
+    // model.changeExerciseCompletionStatus(data)
+    // .then((result) => {
+    //   res.status(201)
+    // })
+    // .catch((err) => console.log(err, 'in controller --> change exercise completion status'))
   }
 }

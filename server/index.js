@@ -39,6 +39,7 @@ app.post('/updateHEPOnSelectedDate', controller.updateHEPOnSelectedDate)
 
 app.put('/editChat', controller.editChat)
 app.put('/reduceOptions', controller.reducedOptions)
+app.put('/changeExerciseCompletionStatus', controller.changeExerciseCompletionStatus)
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
     if (err) {
