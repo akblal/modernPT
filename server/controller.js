@@ -94,7 +94,6 @@ module.exports = {
     console.log(data, ' in updatehep controller')
     model.updateHEPOnSelectedDate(data)
     .then((result) => {
-      console.log(result, 'in controller')
       res.send(result)
       res.status(201)
     })
@@ -103,10 +102,10 @@ module.exports = {
   changeExerciseCompletionStatus(req, res) {
     const data = req.body;
     console.log(data, 'data')
-    // model.changeExerciseCompletionStatus(data)
-    // .then((result) => {
-    //   res.status(201)
-    // })
-    // .catch((err) => console.log(err, 'in controller --> change exercise completion status'))
+    model.changeExerciseCompletionStatus(data)
+    .then((result) => {
+      res.status(201)
+    })
+    .catch((err) => console.log(err, 'in controller --> change exercise completion status'))
   }
 }

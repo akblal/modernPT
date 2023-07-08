@@ -38,7 +38,6 @@ const HEPList = ({ selectedDate, currDate }) => {
         if (selectedDate >= recentDateHEP && selectedDate <= currDate) {
           // console.log('most recent HEP will be listed')
           let tempHEP = dayHEP.data.rows[0].exercises;
-          console.log( 'hello')
           let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
             patient_id: 1,
             date: selectedDate,
@@ -101,15 +100,16 @@ const HEPList = ({ selectedDate, currDate }) => {
               })
               // console.log(updatedHEPData)
               let updatedHEP = updatedHEPData.data.rows[0].exercises
-              console.log(updatedHEP, 'hep, need to add into postgres')
+              // console.log(updatedHEP, 'hep, need to add into postgres')
               setHEP(updatedHEP)
 
-              let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
-                patient_id: 1,
-                date: selectedDate,
-                exercises: JSON.stringify(updatedHEP),
-                completed: false
-              })
+              //code below is not needed
+              // let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
+              //   patient_id: 1,
+              //   date: selectedDate,
+              //   exercises: JSON.stringify(updatedHEP),
+              //   completed: false
+              // })
             }
             setBefore(false)
             setAfter(false)
