@@ -124,7 +124,6 @@ module.exports = {
   },
   changeExerciseCompletionStatus(data) {
     return new Promise ((resolve, reject) => {
-      console.log(typeof data.exercises, 'exercises in model')
       const queryStatement= `UPDATE hep SET exercises = '${data.exercises}' WHERE patient_id = ${data.patient_id} AND date = '${data.date}';`
       pool.query(queryStatement, (err, result) => {
         if (err) {

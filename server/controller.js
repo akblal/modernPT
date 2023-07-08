@@ -91,7 +91,6 @@ module.exports = {
   },
   updateHEPOnSelectedDate(req, res) {
     const data = req.body;
-    console.log(data, ' in updatehep controller')
     model.updateHEPOnSelectedDate(data)
     .then((result) => {
       res.send(result)
@@ -101,7 +100,6 @@ module.exports = {
   },
   changeExerciseCompletionStatus(req, res) {
     const data = req.body;
-    console.log(data, 'data')
     model.changeExerciseCompletionStatus(data)
     .then((result) => {
       res.status(201)

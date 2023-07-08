@@ -131,9 +131,9 @@ const HEPList = ({ selectedDate, currDate }) => {
   }, [selectedDate])
 
   const changeExerciseStatus = async (movement, index) => {
-    console.log(movement, 'movement')
-    console.log(index, 'index in array')
-    console.log(hep, 'this is the total hep')
+    // console.log(movement, 'movement')
+    // console.log(index, 'index in array')
+    // console.log(hep, 'this is the total hep')
     setHEP(hep)
 
     const revisedHEP = await axios.put('/changeExerciseCompletionStatus', {
@@ -145,7 +145,7 @@ const HEPList = ({ selectedDate, currDate }) => {
 
   return (
     <div className= 'hep-page-exercise-list-container'>
-      <h1>number of exercise/{hep.length} completed!</h1>
+      {selectedDate >= evalDate && selectedDate <= currDate && <h1>number of exercise/{hep.length} completed!</h1>}
       {hep && hep[0] &&
         hep.map((exercise, index) => {
           return (
