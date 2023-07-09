@@ -37,31 +37,17 @@ const HEPList = ({ selectedDate, currDate }) => {
           return
         }
 
-        //if selected date is the late of the most recent HEP update for the patient,
-        // or a date after, return the most recent HEP
-
-
-        //---------------
-        // if (selectedDate >= recentDateHEP && selectedDate <= currDate) {
-        //   console.log('most recent HEP will be listed')
-        //   let tempHEP = dayHEP.data.rows[0].exercises;
-        //   // let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
-        //   //   patient_id: 1,
-        //   //   date: selectedDate,
-        //   //   exercises: JSON.stringify(tempHEP),
-        //   // })
-        //   setHEP(tempHEP)
-        //   setBefore(false)
-        //   setAfter(false)
-        //   return
-        // }
-
         //if the selected date is a future date,
         //setAfter (which is boolean and determines if date is within present time period)
         if (selectedDate > currDate) {
-          console.log('most recent HEP will be listed')
+          // console.log('most recent HEP will be listed')
           let tempHEP = dayHEP.data.rows[0].exercises;
-          // console.log(tempHEP, 'hep')
+
+          for (let i = 0; i < tempHEP.length; i++) {
+            let exercise = tempHEP[i];
+            exercise.completed = false
+          }
+          console.log(tempHEP, 'hep')
           setHEP(tempHEP)
           setBefore(false)
           setAfter(true)
@@ -80,7 +66,6 @@ const HEPList = ({ selectedDate, currDate }) => {
               updatedHEPData....
               insert HEP into DB
           */
-         console.log('hi')
 
           try {
             console.log('search for the hep')
