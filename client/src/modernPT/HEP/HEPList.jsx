@@ -21,7 +21,11 @@ const HEPList = ({ selectedDate, currDate }) => {
       })
 
       let recentDateHEP = dayHEP.data.rows[0].date;
+      console.log(recentDateHEP, 'recent date')
+        console.log(currDate, 'curr date')
+        console.log(selectedDate, 'selected date')
       if (selectedDate.length) {
+
 
         //if selected date is earlier than the eval date,
         //return that there is no HEP to return
@@ -35,24 +39,27 @@ const HEPList = ({ selectedDate, currDate }) => {
 
         //if selected date is the late of the most recent HEP update for the patient,
         // or a date after, return the most recent HEP
-        if (selectedDate >= recentDateHEP && selectedDate <= currDate) {
-          // console.log('most recent HEP will be listed')
-          let tempHEP = dayHEP.data.rows[0].exercises;
-          let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
-            patient_id: 1,
-            date: selectedDate,
-            exercises: JSON.stringify(tempHEP),
-          })
-          setHEP(tempHEP)
-          setBefore(false)
-          setAfter(false)
-          return
-        }
+
+
+        //---------------
+        // if (selectedDate >= recentDateHEP && selectedDate <= currDate) {
+        //   console.log('most recent HEP will be listed')
+        //   let tempHEP = dayHEP.data.rows[0].exercises;
+        //   // let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
+        //   //   patient_id: 1,
+        //   //   date: selectedDate,
+        //   //   exercises: JSON.stringify(tempHEP),
+        //   // })
+        //   setHEP(tempHEP)
+        //   setBefore(false)
+        //   setAfter(false)
+        //   return
+        // }
 
         //if the selected date is a future date,
         //setAfter (which is boolean and determines if date is within present time period)
         if (selectedDate > currDate) {
-          //console.log('most recent HEP will be listed')
+          console.log('most recent HEP will be listed')
           let tempHEP = dayHEP.data.rows[0].exercises;
           // console.log(tempHEP, 'hep')
           setHEP(tempHEP)
@@ -64,7 +71,7 @@ const HEPList = ({ selectedDate, currDate }) => {
 
         //if selected date is later than eval date AND less than the latest date of the updated HEP
         //--> search DB for latest HEP entry on the selected date or prior to the selected date
-        if (selectedDate < recentDateHEP && selectedDate >= evalDate) {
+        if (selectedDate <= currDate && selectedDate >= evalDate) {
           /*
             getHEPOnSelectedDate = axios.get...
             if (getHEPOnSelectedDate returns a valid HEP)
@@ -73,9 +80,10 @@ const HEPList = ({ selectedDate, currDate }) => {
               updatedHEPData....
               insert HEP into DB
           */
+         console.log('hi')
 
           try {
-            //console.log('search for the hep')
+            console.log('search for the hep')
             setHEP([])
 
             let selectDayHEPData = await axios.get('/getHEPOnSelectedDate', {
@@ -104,12 +112,12 @@ const HEPList = ({ selectedDate, currDate }) => {
               setHEP(updatedHEP)
 
               //code below is not needed
-              // let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
-              //   patient_id: 1,
-              //   date: selectedDate,
-              //   exercises: JSON.stringify(updatedHEP),
-              //   completed: false
-              // })
+              let addHEPData = await axios.post('/updateHEPOnSelectedDate', {
+                patient_id: 1,
+                date: selectedDate,
+                exercises: JSON.stringify(updatedHEP),
+                completed: false
+              })
             }
             setBefore(false)
             setAfter(false)

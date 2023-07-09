@@ -7,11 +7,11 @@ const Exercise = ({ order, exercise, after, changeExerciseStatus }) => {
   const handleComplete = (e) => {
     e.preventDefault();
     console.log(exercise + ' is completed!')
-    if (completed) {
-      exercise.completed = false
-    } else {
-      exercise.completed = true;
-    }
+    // if (completed) {
+      exercise.completed = !exercise.completed
+    // } else {
+    //   exercise.completed = true;
+    // }
     let status = !completed
     setCompleted(status)
     changeExerciseStatus(exercise, order)
@@ -53,7 +53,7 @@ const Exercise = ({ order, exercise, after, changeExerciseStatus }) => {
         </h2>
         <div className= 'hep-page-exercise-scheme-container'>
         {!after ?
-          completed ?
+          exercise.completed ?
           <button onClick= {handleComplete}> Still Need to Do</button> :
           <button onClick= {handleComplete}> Completed!</button>
           :
